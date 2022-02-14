@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }else if(v == btn_gate_out){
 
-            startActivity(new Intent(MainActivity.this, InCarMainActivity.class));
+            startActivity(new Intent(MainActivity.this, OutCarMainActivity.class));
             finish();
         }
 

@@ -1,30 +1,25 @@
 package com.example.mrta_app_parking_mobile_v1.activity;
 
 import android.content.Intent;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.mrta_app_parking_mobile_v1.R;
 
-public class InCarMainActivity extends AppCompatActivity implements View.OnClickListener {
-
-
+public class OutCarMainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_car_main);
-
+        setContentView(R.layout.activity_out_car_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("ทำรายการขาเข้า");
+        toolbar.setTitle("ทำรายการขาออก");
 
         if (getSupportActionBar() != null) {
 
@@ -51,7 +46,7 @@ public class InCarMainActivity extends AppCompatActivity implements View.OnClick
 
         switch (id) {
             case android.R.id.home:
-                Intent intent = new Intent(InCarMainActivity.this, MainActivity.class);
+                Intent intent = new Intent(OutCarMainActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -70,7 +65,7 @@ public class InCarMainActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(InCarMainActivity.this, MainActivity.class);
+        Intent intent = new Intent(OutCarMainActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
 
