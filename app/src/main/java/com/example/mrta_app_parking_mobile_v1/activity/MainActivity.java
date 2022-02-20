@@ -16,8 +16,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.mrta_app_parking_mobile_v1.R;
+import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class MainActivity extends ImportantMethod implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
 
     private DrawerLayout drawer;

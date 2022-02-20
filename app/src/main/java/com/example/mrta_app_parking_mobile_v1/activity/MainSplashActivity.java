@@ -13,8 +13,9 @@ import android.view.Window;
 
 
 import com.example.mrta_app_parking_mobile_v1.R;
+import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
 
-public class MainSplashActivity extends AppCompatActivity {
+public class MainSplashActivity extends ImportantMethod {
 
 
 

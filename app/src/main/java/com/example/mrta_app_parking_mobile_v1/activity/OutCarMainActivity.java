@@ -9,8 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.mrta_app_parking_mobile_v1.R;
+import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
 
-public class OutCarMainActivity extends AppCompatActivity implements View.OnClickListener {
+public class OutCarMainActivity extends ImportantMethod implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
