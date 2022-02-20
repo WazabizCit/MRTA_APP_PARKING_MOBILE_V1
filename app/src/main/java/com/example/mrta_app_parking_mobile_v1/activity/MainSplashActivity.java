@@ -37,7 +37,7 @@ public class MainSplashActivity extends ImportantMethod {
                     return;
                 } else {
 
-                    Intent intent = new Intent(MainSplashActivity.this, MainActivity.class);
+                    Intent intent = new Intent(MainSplashActivity.this, LoginMainActivity.class);
                     startActivity(intent);
                     finish();
 

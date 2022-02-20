@@ -49,10 +49,9 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     private static final String PREF_NAME_DEVICE = "pref_name_device";
     private final int DefaultInt = 0;
     private final String DefaultString = "null";
-    private String mac_address_print;
     private String ip_address;
     private String port;
-    private String name_device;
+
 
     private DrawerLayout drawer;
     CardView card_ok;
@@ -357,10 +356,9 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
         SharedPreferences settings = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
         // Get value
 
-        mac_address_print = settings.getString(PREF_MAC_ADDRESS_PRINT, DefaultString);
         ip_address = settings.getString(PREF_IP_ADDRESS, DefaultString);
         port = settings.getString(PREF_PORT, DefaultString);
-        name_device = settings.getString(PREF_NAME_DEVICE, DefaultString);
+
 
 
     }

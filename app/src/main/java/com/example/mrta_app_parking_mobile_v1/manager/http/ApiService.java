@@ -1,6 +1,7 @@
 package com.example.mrta_app_parking_mobile_v1.manager.http;
 
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_in;
+import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_login;
 import com.example.mrta_app_parking_mobile_v1.model.Result_checkcard;
 
 import okhttp3.ResponseBody;
@@ -19,11 +20,23 @@ import retrofit2.http.Path;
 public interface ApiService {
 
 
-
-
-
     @GET("v1/test")
     Call<ResponseBody> test_con();
+
+    @FormUrlEncoded
+    @POST("v1/parking_auth/login")
+    Call<Result_action_mobile_login> action_mobile_login(
+            @Field("m_cabinet_id") String m_cabinet_id,
+            @Field("m_cabinet_in_send_time") String m_cabinet_in_send_time,
+            @Field("m_cabinet_code") String m_cabinet_code,
+            @Field("m_building_id") String m_building_id,
+            @Field("m_building_code") String m_building_code,
+            @Field("m_username") String m_username,
+            @Field("m_password") String m_password
+
+
+    );
+
 
     @FormUrlEncoded
     @POST("v1/parking_util/action_checkcard_in")
@@ -52,15 +65,6 @@ public interface ApiService {
             @Field("m_admin") String m_admin
 
     );
-
-
-
-
-
-
-
-
-
 
 
 }
