@@ -82,6 +82,52 @@ tools:context=".activity.InCarMainActivity">
 
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_weight="0.5"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:layout_margin="5dp"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:text="ประเภท"
+                android:background="@color/colorblack"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/edit_type_card"
+                android:layout_margin="5dp"
+                android:layout_width="0dp"
+                android:layout_weight="2.2"
+                android:hint="ประเภทบัตร"
+                android:focusable="false"
+                android:textColorHint="@color/colorWhite"
+                android:background="@color/colorblack"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_height="match_parent" />
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:orientation="horizontal"
@@ -108,7 +154,7 @@ tools:context=".activity.InCarMainActivity">
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:hint="ทะเบียนรถ"
-                android:inputType="number"
+                android:inputType="text"
                 android:maxLength="10"
                 android:gravity="center"
                 android:layout_height="match_parent" />
@@ -174,7 +220,7 @@ tools:context=".activity.InCarMainActivity">
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-
+    android:visibility="gone"
     app:headerLayout="@layout/nav_header"
     app:itemTextColor="@color/colorblack"
     app:itemIconTint="@color/colorblack"

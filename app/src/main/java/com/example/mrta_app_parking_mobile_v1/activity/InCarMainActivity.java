@@ -21,9 +21,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 import com.example.mrta_app_parking_mobile_v1.R;
+import com.example.mrta_app_parking_mobile_v1.manager.HttpManager;
+import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_in;
+import com.example.mrta_app_parking_mobile_v1.model.Result_checkcard;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 
 public class InCarMainActivity extends ImportantMethod implements View.OnClickListener {
 
@@ -46,6 +58,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     CardView card_ok;
     EditText edit_license_plate;
     EditText edit_id_card;
+    EditText edit_type_card;
     private ProgressDialog progressDoalog;
 
 
@@ -102,6 +115,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
         edit_license_plate = findViewById(R.id.edit_license_plate);
         card_ok = findViewById(R.id.card_ok);
         edit_id_card = findViewById(R.id.edit_id_card);
+        edit_type_card = findViewById(R.id.edit_type_card);
 
         edit_id_card.setText(tag_id_card);
         card_ok.setOnClickListener(this);
@@ -142,6 +156,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
         progressDoalog.setCancelable(true);
         progressDoalog.show();
 
+        final String timestamp  =   getCurrentTimeStamp();
 
         try {
 
@@ -153,6 +168,42 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
 
             showToastLog(TAG, "formattag_HEX: " + bytesToHexString(tagId));
             showToastLog(TAG, "formattag_DEC: " + tag_id_card);
+
+            Call<Result_checkcard> call = HttpManager.getInstance(ip_address, port).getService().action_checkcard_in(
+                    "10","ab123456","1","N23",timestamp,tag_id_card,"1");
+            call.enqueue(new Callback<Result_checkcard>() {
+                @Override
+                public void onResponse(Call<Result_checkcard> call, Response<Result_checkcard> response) {
+
+                    if( null == response.body().getError()){
+                        String type_card = response.body().getData().getCardTypeName();
+                        edit_id_card.setText(tag_id_card + "");
+                        edit_type_card.setText(type_card+"");
+                    }else{
+
+                        String txt_error = response.body().getMessage()+"";
+                        showToastWarning(txt_error, InCarMainActivity.this);
+                        tag_id_card = null;
+                        edit_id_card.setText("เลข Card");
+                        edit_type_card.setText("ประเภทบัตร");
+
+                    }
+
+                    if (progressDoalog != null) {
+                        progressDoalog.dismiss();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Result_checkcard> call, Throwable t) {
+                    showToastWarning("การบันทึกมีปัญหา" + t.toString(), InCarMainActivity.this);
+                    if (progressDoalog != null) {
+                        progressDoalog.dismiss();
+                    }
+
+                }
+            });
 
 
         } catch (Exception e) {
@@ -208,35 +259,57 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     public void onClick(View v) {
         if (card_ok == v) {
 
-           // Log.d("xxasdkkasod","adkokaosdkpoaskdp");
-           // showToastWarning("axcxzc", this);
+            progressDoalog = new ProgressDialog(this);
+            progressDoalog.setTitle("กำลังส่งข้อมูล Service");
+            progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDoalog.setMessage("กรุณารอสักครู่...");
+            progressDoalog.setCancelable(false);
 
-            showToastSuccess("axcxzc", this);
+            final String license_plate = edit_license_plate.getText().toString().replaceAll(" ", "");
+            final String card_code = tag_id_card;
+            final String timestamp = getCurrentTimeStamp();
+            progressDoalog.show();
+            if (checkdata()) {
+                Call<Result_action_mobile_in> call =
+                        HttpManager.getInstance(ip_address, port).getService().action_mobile_in(
+                                "10", "ab123456",
+                                "1", "N23",
+                                timestamp, card_code, license_plate, "1");
+                call.enqueue(new Callback<Result_action_mobile_in>() {
+                    @Override
+                    public void onResponse(Call<Result_action_mobile_in> call, Response<Result_action_mobile_in> response) {
 
-          //  showToastDanger("axcxzc", this);
+                        progressDoalog.dismiss();
+                        if (null == response.body().getError()) {
+                            edit_license_plate.setText("");
+                            edit_id_card.setText("");
+                            tag_id_card = null;
+                            edit_type_card.setText("ประเภทบัตร");
+                            showToastSuccess(response.body().getMessage(), getApplicationContext());
 
-//            progressDoalog = new ProgressDialog(this);
-//            progressDoalog.setTitle("กำลังส่งข้อมูล Service");
-//            progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//            progressDoalog.setMessage("กรุณารอสักครู่...");
-//            progressDoalog.setCancelable(false);
-//
-//            final String license_plate = edit_license_plate.getText().toString().replaceAll(" ", "");
-//            final String card_code = tag_id_card;
-//            final String currentdate = getCurrentDate();
-//            final String timestamp  =   getCurrentTimeStamp();
-//            progressDoalog.show();
-//
-//
-//            if (checkdata()) {
-//
-//
-//
-//
-//            }else{
-//                progressDoalog.dismiss();
-//            }
+                        } else {
 
+                            showToastWarning(response.body().getMessage(), getApplicationContext());
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Result_action_mobile_in> call, Throwable t) {
+
+                        showToastWarning("การบันทึกมีปัญหา" + t.toString(), getApplicationContext());
+                        showToastLog(TAG, t.toString());
+                        progressDoalog.dismiss();
+
+                    }
+                });
+
+
+            }else{
+                progressDoalog.dismiss();
+            }
 
         }
 

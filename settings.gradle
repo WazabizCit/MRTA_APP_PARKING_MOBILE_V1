@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "MRTA_APP_PARKING_MOBILE_V1"
-include ':app'
+include ':app',':TheCheeseLibrary'
