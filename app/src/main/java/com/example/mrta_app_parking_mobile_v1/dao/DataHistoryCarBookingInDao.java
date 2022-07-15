@@ -29,7 +29,7 @@ public class DataHistoryCarBookingInDao {
     public ArrayList<History_data_carin_dao> getDataHistory() {
 
         ArrayList<History_data_carin_dao> list = new ArrayList<>();
-        String query = "select * from tran_history_carbooking_in  order by tran_carbookingin_id desc limit 50";
+        String query = "select * from tran_history_car_in  order by tran_carin_id desc limit 50";
 
         Cursor cursor = database.rawQuery(query,new String[]{});
         cursor.moveToFirst();

@@ -2,6 +2,7 @@ package com.example.mrta_app_parking_mobile_v1.manager.http;
 
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_in;
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_login;
+import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_out_call_checkpayment;
 import com.example.mrta_app_parking_mobile_v1.model.Result_checkcard;
 
 import okhttp3.ResponseBody;
@@ -63,6 +64,22 @@ public interface ApiService {
             @Field("m_card_code") String m_card_code,
             @Field("m_license_plate_text") String m_license_plate_text,
             @Field("m_admin") String m_admin
+
+    );
+
+
+    @FormUrlEncoded
+    @POST("v1/parking_out/mobile_out_call_checkpayment")
+    Call<Result_action_mobile_out_call_checkpayment> action_mobile_out_call_checkpayment(
+            @Field("m_cabinet_id") String m_cabinet_id,
+            @Field("m_cabinet_code") String m_cabinet_code,
+            @Field("m_building_id") String m_building_id,
+            @Field("m_building_code") String m_building_code,
+            @Field("m_card_code") String m_card_code,
+            @Field("m_cabinet_send_time") String m_cabinet_send_time,
+            @Field("m_admin") String m_admin,
+            @Field("m_card_signature") String m_card_signature,
+            @Field("m_location_user_picture") String m_location_user_picture
 
     );
 

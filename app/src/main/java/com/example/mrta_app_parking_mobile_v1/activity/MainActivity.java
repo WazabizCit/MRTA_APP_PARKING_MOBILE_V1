@@ -96,7 +96,7 @@ public class MainActivity extends ImportantMethod implements NavigationView.OnNa
         switch (item.getItemId()) {
 
             case R.id.item_history_in:
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                startActivity(new Intent(MainActivity.this, HistoryCarInMainActivity.class));
                 finish();
                 break;
 
