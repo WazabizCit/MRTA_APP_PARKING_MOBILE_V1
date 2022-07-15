@@ -28,14 +28,34 @@ import retrofit2.Response;
 
 public class LoginMainActivity extends ImportantMethod implements View.OnTouchListener, View.OnClickListener {
 
+
     String TAG = "LoginMainActivity";
 
 
     private static final String PREFS_NAME = "preferences";
     private static final String PREF_IP_ADDRESS = "pref_ip_address";
     private static final String PREF_PORT = "pref_port";
+    private static final String PREF_CABINET_ID = "pref_cabinet_id";
+    private static final String PREF_CABINET_CODE = "pref_cabinet_code";
+    private static final String PREF_BUILDING_ID = "pref_building_id";
+    private static final String PREF_BUILDING_CODE = "pref_building_code";
+    private static final String PREF_ADMIN_ID = "pref_admin_id";
+    private static final String PREF_ADMIN_NAME = "pref_admin_name";
+
+
+
+
+
+
+
     private final int DefaultInt = 0;
     private final String DefaultString = "null";
+    private String name_cabinet_id;
+    private String name_cabinet_code;
+    private String name_building_id;
+    private String name_building_code;
+    private String name_admin_id;
+    private String name_admin_name;
     private String ip_address;
     private String port;
 
@@ -45,13 +65,13 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
     EditText edit_username;
     EditText edit_password;
     Button btn_login;
-    TextView txt_admin_setting;
+    TextView btn_admin_setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
-
+        loadPreferences();
         inintInstances();
     }
 
@@ -62,12 +82,15 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
         edit_username = findViewById(R.id.edit_username);
         edit_password = findViewById(R.id.edit_password);
         btn_login = findViewById(R.id.btn_login);
-        txt_admin_setting = findViewById(R.id.txt_admin_setting);
+        btn_admin_setting = findViewById(R.id.btn_admin_setting);
 
 
         relativeLayout_login.setOnTouchListener(this);
-        btn_login.setOnClickListener(this);
 
+        btn_login.setOnClickListener(this);
+        btn_admin_setting.setOnClickListener(this);
+        edit_username.setText("0023");
+        edit_password.setText("0023");
 
     }
 
@@ -103,9 +126,8 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
             progressDoalog.show();
             if (checkdata()) {
                 Call<Result_action_mobile_login> call =
-                        HttpManager.getInstance(ip_address, port).getService().action_mobile_login("10", "ab123456",
-                                "1", "N23",
-                                timestamp, username, password);
+                        HttpManager.getInstance(ip_address, port).getService().action_mobile_login(name_cabinet_id, timestamp, name_cabinet_code, name_building_id,
+                             name_building_code   , username, password);
                 call.enqueue(new Callback<Result_action_mobile_login>() {
                     @Override
                     public void onResponse(Call<Result_action_mobile_login> call, Response<Result_action_mobile_login> response) {
@@ -113,9 +135,17 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
                         progressDoalog.dismiss();
                         if (null == response.body().getError()) {
 
+                            name_admin_id = response.body().getData().getEmployeeId()+"";
+                            name_admin_name = response.body().getData().getFirstNameTh()+"";
+                            save_references();
                             Intent intent = new Intent(LoginMainActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
+
+
+
+
+
                         } else {
 
                             showToastWarning(response.body().getMessage(), getApplicationContext());
@@ -140,6 +170,30 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
                 progressDoalog.dismiss();
             }
 
+        }else if(v == btn_admin_setting ){
+
+
+
+            if(checkdata()){
+
+                final String username = edit_username.getText().toString().replaceAll(" ", "");
+                final String password = edit_password.getText().toString().replaceAll(" ", "");
+
+
+                if(username.equals("00231") && password.equals("00231")){
+
+                    Intent intent = new Intent(LoginMainActivity.this, SettingMainActivity.class);
+                    startActivity(intent);
+
+                }else {
+
+                    showToastWarning("Username หรือ Password Admin ไม่ถูกต้อง",LoginMainActivity.this);
+
+                }
+            }
+
+
+
         }
 
     }
@@ -161,16 +215,51 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
     }
 
 
+
+
     private void loadPreferences() {
 
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        // Get value
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
 
+        // Get value
+        name_cabinet_id = settings.getString(PREF_CABINET_ID , DefaultString);
+        name_cabinet_code = settings.getString(PREF_CABINET_CODE , DefaultString);
+        name_building_id = settings.getString(PREF_BUILDING_ID , DefaultString);
+        name_building_code = settings.getString(PREF_BUILDING_CODE , DefaultString);
         ip_address = settings.getString(PREF_IP_ADDRESS, DefaultString);
         port = settings.getString(PREF_PORT, DefaultString);
 
 
+        showToastLog(TAG,
+                "name_cabinet_id :"+name_cabinet_id+
+                        "name_cabinet_code :"+name_cabinet_code+
+                        "name_building_id :"+name_building_id+
+                        "name_building_code :"+name_building_code+
+                        "ip_address :"+ip_address+
+                        "port :"+port+
+                        ""
+
+
+        );
+
     }
+
+
+    private void save_references() {
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        // Edit and commit
+        editor.putString(PREF_ADMIN_ID , name_admin_id+ "");
+        editor.putString(PREF_ADMIN_NAME , name_admin_name+ "");
+        editor.commit();
+
+
+    }
+
+
+
 
 
 }

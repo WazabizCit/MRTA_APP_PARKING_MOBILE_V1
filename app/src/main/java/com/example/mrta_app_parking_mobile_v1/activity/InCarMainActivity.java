@@ -28,7 +28,9 @@ import retrofit2.Response;
 
 
 import com.example.mrta_app_parking_mobile_v1.R;
+import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarBookingInDao;
 import com.example.mrta_app_parking_mobile_v1.manager.HttpManager;
+import com.example.mrta_app_parking_mobile_v1.model.History_data_carin_dao;
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_in;
 import com.example.mrta_app_parking_mobile_v1.model.Result_checkcard;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
@@ -43,14 +45,30 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
 
 
     private static final String PREFS_NAME = "preferences";
-    private static final String PREF_MAC_ADDRESS_PRINT = "pref_mac_address_print";
     private static final String PREF_IP_ADDRESS = "pref_ip_address";
     private static final String PREF_PORT = "pref_port";
-    private static final String PREF_NAME_DEVICE = "pref_name_device";
+    private static final String PREF_CABINET_ID = "pref_cabinet_id";
+    private static final String PREF_CABINET_CODE = "pref_cabinet_code";
+    private static final String PREF_BUILDING_ID = "pref_building_id";
+    private static final String PREF_BUILDING_CODE = "pref_building_code";
+    private static final String PREF_ADMIN_ID = "pref_admin_id";
+    private static final String PREF_ADMIN_NAME = "pref_admin_name";
+
+
+
+
     private final int DefaultInt = 0;
     private final String DefaultString = "null";
     private String ip_address;
     private String port;
+    private String name_cabinet_id;
+    private String name_cabinet_code;
+    private String name_building_id;
+    private String name_building_code;
+    private String name_admin_id;
+    private String name_admin_name;
+
+
 
 
     private DrawerLayout drawer;
@@ -169,7 +187,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
             showToastLog(TAG, "formattag_DEC: " + tag_id_card);
 
             Call<Result_checkcard> call = HttpManager.getInstance(ip_address, port).getService().action_checkcard_in(
-                    "10","ab123456","1","N23",timestamp,tag_id_card,"1");
+                    name_cabinet_id,name_cabinet_code,name_building_id,name_building_code,timestamp,tag_id_card,name_admin_id);
             call.enqueue(new Callback<Result_checkcard>() {
                 @Override
                 public void onResponse(Call<Result_checkcard> call, Response<Result_checkcard> response) {
@@ -271,9 +289,9 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
             if (checkdata()) {
                 Call<Result_action_mobile_in> call =
                         HttpManager.getInstance(ip_address, port).getService().action_mobile_in(
-                                "10", "ab123456",
-                                "1", "N23",
-                                timestamp, card_code, license_plate, "1");
+                                name_cabinet_id, name_cabinet_code,
+                                name_building_id, name_building_code,
+                                timestamp, card_code, license_plate, name_admin_id);
                 call.enqueue(new Callback<Result_action_mobile_in>() {
                     @Override
                     public void onResponse(Call<Result_action_mobile_in> call, Response<Result_action_mobile_in> response) {
@@ -285,6 +303,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
                             tag_id_card = null;
                             edit_type_card.setText("ประเภทบัตร");
                             showToastSuccess(response.body().getMessage(), getApplicationContext());
+                            RecordHistoryCarInData(name_cabinet_id,name_cabinet_code,name_building_id,name_building_code,timestamp,card_code,license_plate,name_admin_id,name_admin_name,response.body().getMessage());
 
                         } else {
 
@@ -350,18 +369,79 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
 
 
 
+    private void RecordHistoryCarInData(       String tran_carin_cabinet_id,
+                                               String tran_carin_cabinet_code,
+                                               String tran_carin_building_id,
+                                               String tran_carin_building_code,
+                                               String tran_carin_cabinet_send_time,
+                                               String tran_carin_cardcode,
+                                               String tran_carin_license_plate,
+                                               String tran_carin_admin_id,
+                                               String tran_carin_admin_name,
+                                               String tran_carin_response
+
+    ) {
+
+
+        History_data_carin_dao list = new History_data_carin_dao();
+        list.setTran_carin_cabinet_id(tran_carin_cabinet_id);
+        list.setTran_carin_cabinet_code(tran_carin_cabinet_code);
+        list.setTran_carin_building_id(tran_carin_building_id);
+        list.setTran_carin_building_code(tran_carin_building_code);
+        list.setTran_carin_cabinet_send_time(tran_carin_cabinet_send_time);
+        list.setTran_carin_cardcode(tran_carin_cardcode);
+        list.setTran_carin_license_plate(tran_carin_license_plate);
+        list.setTran_carin_admin_id(tran_carin_admin_id);
+        list.setTran_carin_admin_name(tran_carin_admin_name);
+        list.setTran_carin_response(tran_carin_response);
+
+
+        DataHistoryCarBookingInDao dao = new DataHistoryCarBookingInDao(getApplicationContext());
+        dao.open();
+        dao.add_tran_history_car_in(list);
+        dao.close();
+
+
+    }
+
+
+
+
 
     private void loadPreferences() {
 
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
-        // Get value
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
 
+        // Get value
+        name_cabinet_id = settings.getString(PREF_CABINET_ID, DefaultString);
+        name_cabinet_code = settings.getString(PREF_CABINET_CODE, DefaultString);
+        name_building_id = settings.getString(PREF_BUILDING_ID, DefaultString);
+        name_building_code = settings.getString(PREF_BUILDING_CODE, DefaultString);
+        name_admin_id = settings.getString(PREF_ADMIN_ID, DefaultString);
+        name_admin_name = settings.getString(PREF_ADMIN_NAME, DefaultString);
         ip_address = settings.getString(PREF_IP_ADDRESS, DefaultString);
         port = settings.getString(PREF_PORT, DefaultString);
 
 
+        showToastLog(TAG,
+                "name_cabinet_id :" + name_cabinet_id +
+                        ",name_cabinet_code :" + name_cabinet_code +
+                        ",name_building_id :" + name_building_id +
+                        ",name_building_code :" + name_building_code +
+                        ",name_admin_id :" + name_admin_id +
+                        ",name_admin_name :" + name_admin_name +
+                        ",ip_address :" + ip_address +
+                        ",port :" + port +
+                        ""
+
+
+        );
 
     }
+
+
+
 
 
 }
