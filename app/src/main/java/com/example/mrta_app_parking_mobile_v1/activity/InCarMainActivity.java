@@ -204,6 +204,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
                         edit_id_card.setText("เลข Card");
                         edit_type_card.setText("ประเภทบัตร");
 
+
                     }
 
                     if (progressDoalog != null) {
@@ -228,6 +229,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
             showToastSuccess("RFID ไม่ตรงกัน", InCarMainActivity.this);
             tag_id_card = null;
             edit_id_card.setText("เลข Card");
+            edit_type_card.setText("ประเภทบัตร");
             showToastLog(TAG, "Error: " + e);
 
         }
@@ -257,9 +259,21 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
 
                 break;
 
+            case R.id.action_clear:
+
+                tag_id_card = null;
+                edit_id_card.setText("เลข Card");
+                edit_type_card.setText("ประเภทบัตร");
+                edit_license_plate.setText("");
+
+                break;
+
+
             default:
 
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 

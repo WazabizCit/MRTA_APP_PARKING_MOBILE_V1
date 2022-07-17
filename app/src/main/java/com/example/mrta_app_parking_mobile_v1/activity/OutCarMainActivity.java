@@ -24,6 +24,8 @@ import com.example.mrta_app_parking_mobile_v1.model.History_data_carin_dao;
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_in;
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_out_call_checkpayment;
 import com.example.mrta_app_parking_mobile_v1.model.Result_checkcard;
+import com.example.mrta_app_parking_mobile_v1.model.Result_mobile_out_flag_card_no_pay;
+import com.example.mrta_app_parking_mobile_v1.model.Result_mobile_out_payment_cash;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
 
 import java.text.SimpleDateFormat;
@@ -67,6 +69,27 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
     EditText edit_id_card;
     EditText edit_info;
     private ProgressDialog progressDoalog;
+
+
+    //////////////////  DATA RESULT //////////////////
+
+    String data_lic_plate = "";
+    String data_card_status = "";
+    String data_car_type_status = "";
+    String data_carparking_in_time = "";
+    String data_carparking_out_time = "";
+    String data_result_parking_interval = "";
+    String data_estamp_type_name = "";
+    String data_payment_totle = "";
+    String data_discount_amount = "";
+    String data_payment_fine_amount = "";
+    String data_uat_text = "";
+    String data_payment_type_id = "";
+    String data_payment_event_id = "";
+    String data_tci_id = "";
+    String data_tcch_id = "";
+    String data_payment_status = "";
+    String data_payment_amount = "";
 
 
     //////////////////////////  NFC  //////////////////////////
@@ -185,47 +208,50 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
 
                     if (null == response.body().getError()) {
 
-
-
-
                         edit_id_card.setText(tag_id_card + "");
 
-                        String txt_lic_plate = response.body().getData().getLicensePlateText() + "";
-                        String txt_card_status = response.body().getData().getCardStatus() + "";
-                        String txt_car_type_status = response.body().getData().getCarTypeStatus() + "";
-                        String txt_carparking_in_time = response.body().getData().getCarparkingInTime() + "";
-                        String txt_carparking_out_time = response.body().getData().getCarparkingOutTime() + "";
-                        String txt_result_parking_interval = response.body().getData().getResultParkingInterval() + "";
-                        String txt_estamp_type_name = response.body().getData().getEstampTypeName() + "";
-                        String txt_payment_totle = response.body().getData().getPaymentTotle() + "";
-                        String txt_discount_amount = response.body().getData().getDiscountAmount() + "";
-                        String txt_payment_fine_amount = response.body().getData().getPaymentFineAmount() + "";
-                        String txt_uat_text = response.body().getData().getUatText() + "";
+
+                        data_lic_plate = response.body().getData().getLicensePlateText() + "";
+                        data_card_status = response.body().getData().getCardStatus() + "";
+                        data_car_type_status = response.body().getData().getCarTypeStatus() + "";
+                        data_carparking_in_time = response.body().getData().getCarparkingInTime() + "";
+                        data_carparking_out_time = response.body().getData().getCarparkingOutTime() + "";
+                        data_result_parking_interval = response.body().getData().getResultParkingInterval() + "";
+                        data_estamp_type_name = response.body().getData().getEstampTypeName() + "";
+                        data_payment_totle = response.body().getData().getPaymentTotle() + "";
+                        data_payment_amount = response.body().getData().getPaymentAmount() + "";
+                        data_discount_amount = response.body().getData().getDiscountAmount() + "";
+                        data_payment_fine_amount = response.body().getData().getPaymentFineAmount() + "";
+                        data_uat_text = response.body().getData().getUatText() + "";
+                        data_payment_type_id = response.body().getData().getPaymentTypeId() + "";
+                        data_payment_event_id = response.body().getData().getPaymentEventId() + "";
+                        data_tci_id = response.body().getData().getTciId() + "";
+                        data_tcch_id = response.body().getData().getTcchId() + "";
+                        data_payment_status = response.body().getData().getPaymentStatus() + "";
 
 
                         edit_info.setText(
-                                "สถานะระบบ : " + txt_uat_text + "\n" +
-                                        "ทะเบียนรถ : " + txt_lic_plate + "\n" +
-                                        "ประเภทผู้ใช้ : " + txt_card_status + "\n" +
-                                        "ประเภทบัตร : " + txt_car_type_status + "\n" +
-                                        "เวลาเข้า : " + txt_carparking_in_time + "\n" +
-                                        "เวลาออก : " + txt_carparking_out_time + "\n" +
-                                        "เวลาจอดที่ปัดเศษ : " + txt_result_parking_interval + "\n" +
-                                        "สถานะ Estamp : " + txt_estamp_type_name + "\n" +
-                                        "ค่าปรับ : " + txt_payment_fine_amount + " บาท\n" +
-                                        "ส่วนลด : " + txt_discount_amount + " บาท\n" +
-                                        "ค่าบริการสุทธิ : " + txt_payment_totle + " บาท\n "
+                                "สถานะระบบ : " + data_uat_text + "\n" +
+                                        "ทะเบียนรถ : " + data_lic_plate + "\n" +
+                                        "ประเภทผู้ใช้ : " + data_card_status + "\n" +
+                                        "ประเภทบัตร : " + data_car_type_status + "\n" +
+                                        "เวลาเข้า : " + data_carparking_in_time + "\n" +
+                                        "เวลาออก : " + data_carparking_out_time + "\n" +
+                                        "เวลาจอดที่ปัดเศษ : " + data_result_parking_interval + "\n" +
+                                        "สถานะ Estamp : " + data_estamp_type_name + "\n" +
+                                        "ค่าปรับ : " + data_payment_fine_amount + " บาท\n" +
+                                        "ส่วนลด : " + data_discount_amount + " บาท\n" +
+                                        "ค่าบริการสุทธิ : " + data_payment_totle + " บาท\n "
                         );
 
 
                     } else {
 
-                        String txt_error = response.body().getMessage()+"";
+                        String txt_error = response.body().getMessage() + "";
                         showToastWarning(txt_error, OutCarMainActivity.this);
                         tag_id_card = null;
                         edit_id_card.setText("เลข Card");
                         edit_info.setText("ข้อมูล");
-
 
 
                     }
@@ -281,6 +307,15 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
 
                 break;
 
+            case R.id.action_clear:
+
+                tag_id_card = null;
+                edit_id_card.setText("เลข Card");
+                edit_info.setText("ข้อมูล");
+
+                break;
+
+
             default:
 
         }
@@ -300,8 +335,141 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
     public void onClick(View v) {
         if (card_ok == v) {
 
+            progressDoalog = new ProgressDialog(this);
+            progressDoalog.setTitle("กำลังส่งข้อมูล Service");
+            progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDoalog.setMessage("กรุณารอสักครู่...");
+            progressDoalog.setCancelable(false);
+            progressDoalog.show();
+
+
+            if (checkdata()) {
+
+
+                switch (data_payment_totle) {
+                    case "":
+                        progressDoalog.dismiss();
+                        showToastWarning("ระบบผิดพลาด เนื่องจาก payment_totle ไม่มีค่า", OutCarMainActivity.this);
+                        break;
+                    default:
+
+                        if (data_payment_totle.equals("0")) {
+
+                            showToastLog(TAG, "not pay");
+                            fun_mobile_out_flag_card_no_pay();
+
+                        } else {
+
+                            showToastLog(TAG, "pay");
+                            fun_mobile_out_payment_cash();
+
+
+                        }
+
+                }
+
+
+            }else{
+                progressDoalog.dismiss();
+            }
+
 
         }
+
+
+    }
+
+
+    private void fun_mobile_out_flag_card_no_pay() {
+
+        final String timestamp = getCurrentTimeStamp();
+
+        Call<Result_mobile_out_flag_card_no_pay> call = HttpManager.getInstance(ip_address, port).getService().action_mobile_out_flag_card_no_pay(
+                name_cabinet_id, name_cabinet_code, name_building_id, name_building_code, tag_id_card, timestamp, name_admin_id, "", "",
+                data_payment_type_id, data_payment_event_id, data_tci_id, data_payment_amount, data_discount_amount, data_payment_totle, "0", "0",
+                "0", "0", "0", "0", "0", "0", "0", data_payment_fine_amount
+
+        );
+        call.enqueue(new Callback<Result_mobile_out_flag_card_no_pay>() {
+            @Override
+            public void onResponse(Call<Result_mobile_out_flag_card_no_pay> call, Response<Result_mobile_out_flag_card_no_pay> response) {
+
+                progressDoalog.dismiss();
+                if (null == response.body().getError()) {
+
+                    showToastLog(TAG, response.body().getMessage() + "");
+
+                    edit_id_card.setText("เลขบัตร");
+                    edit_info.setText("ข้อมูล");
+                    tag_id_card = null;
+                    showToastSuccess("ทำรายการขาออกสำเร็จ", getApplicationContext());
+
+
+                } else {
+
+                    showToastWarning(response.body().getMessage() + "", getApplicationContext());
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Result_mobile_out_flag_card_no_pay> call, Throwable t) {
+
+                showToastWarning("การบันทึกมีปัญหา" + t.toString(), getApplicationContext());
+                showToastLog(TAG, t.toString());
+                progressDoalog.dismiss();
+
+            }
+        });
+
+
+    }
+
+
+    private void fun_mobile_out_payment_cash() {
+
+        final String timestamp = getCurrentTimeStamp();
+
+        Call<Result_mobile_out_payment_cash> call = HttpManager.getInstance(ip_address, port).getService().action_mobile_out_payment_cash(
+                name_cabinet_id, name_cabinet_code, name_building_id, name_building_code, tag_id_card, timestamp, name_admin_id, "", "",
+                data_payment_type_id, data_payment_event_id,data_payment_status, data_tci_id,data_tcch_id, data_payment_amount, data_discount_amount, data_payment_totle, "0", "0",
+                "0", "0", "0", "0", "0", "0", "0", data_payment_fine_amount
+
+        );
+        call.enqueue(new Callback<Result_mobile_out_payment_cash>() {
+            @Override
+            public void onResponse(Call<Result_mobile_out_payment_cash> call, Response<Result_mobile_out_payment_cash> response) {
+
+                progressDoalog.dismiss();
+                if (null == response.body().getError()) {
+
+                    showToastLog(TAG, response.body().getMessage() + "");
+
+                    edit_id_card.setText("เลขบัตร");
+                    edit_info.setText("ข้อมูล");
+                    tag_id_card = null;
+                    showToastSuccess("ทำรายการขาออกสำเร็จ", getApplicationContext());
+
+
+                } else {
+                    showToastWarning(response.body().getMessage() + "", getApplicationContext());
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Result_mobile_out_payment_cash> call, Throwable t) {
+
+                showToastWarning("การบันทึกมีปัญหา" + t.toString(), getApplicationContext());
+                showToastLog(TAG, t.toString());
+                progressDoalog.dismiss();
+
+            }
+        });
 
 
     }
@@ -374,10 +542,8 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
 
 
     private void loadPreferences() {
-
         SharedPreferences settings = getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
-
         // Get value
         name_cabinet_id = settings.getString(PREF_CABINET_ID, DefaultString);
         name_cabinet_code = settings.getString(PREF_CABINET_CODE, DefaultString);
@@ -387,7 +553,6 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
         name_admin_name = settings.getString(PREF_ADMIN_NAME, DefaultString);
         ip_address = settings.getString(PREF_IP_ADDRESS, DefaultString);
         port = settings.getString(PREF_PORT, DefaultString);
-
 
         showToastLog(TAG,
                 "name_cabinet_id :" + name_cabinet_id +
