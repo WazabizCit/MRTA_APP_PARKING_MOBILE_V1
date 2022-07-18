@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 
 import com.example.mrta_app_parking_mobile_v1.R;
-import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarBookingInDao;
+import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarInDao;
 import com.example.mrta_app_parking_mobile_v1.manager.HttpManager;
 import com.example.mrta_app_parking_mobile_v1.model.History_data_carin_dao;
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_in;
@@ -410,7 +410,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
         list.setTran_carin_response(tran_carin_response);
 
 
-        DataHistoryCarBookingInDao dao = new DataHistoryCarBookingInDao(getApplicationContext());
+        DataHistoryCarInDao  dao = new DataHistoryCarInDao(getApplicationContext());
         dao.open();
         dao.add_tran_history_car_in(list);
         dao.close();

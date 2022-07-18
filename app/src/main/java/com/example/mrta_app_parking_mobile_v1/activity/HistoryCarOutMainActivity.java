@@ -13,14 +13,13 @@ import android.widget.TextView;
 
 import com.example.mrta_app_parking_mobile_v1.R;
 import com.example.mrta_app_parking_mobile_v1.adapter.History_CarIn_Data_Adapter;
-
 import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarInDao;
 import com.example.mrta_app_parking_mobile_v1.model.History_data_carin_dao;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
 
 import java.util.ArrayList;
 
-public class HistoryCarInMainActivity extends ImportantMethod {
+public class HistoryCarOutMainActivity extends ImportantMethod {
 
 
 
@@ -35,8 +34,7 @@ public class HistoryCarInMainActivity extends ImportantMethod {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_car_in_main);
-
+        setContentView(R.layout.activity_history_car_out_main);
         inintInstances();
         getListHistory();
 
@@ -44,7 +42,7 @@ public class HistoryCarInMainActivity extends ImportantMethod {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("ประวัติงานขาเข้า Parking");
+        toolbar.setTitle("ประวัติงานขาออก Parking");
 
         if (getSupportActionBar() != null) {
 
@@ -90,7 +88,7 @@ public class HistoryCarInMainActivity extends ImportantMethod {
 
         if (id == android.R.id.home) {
 
-            Intent intent = new Intent(HistoryCarInMainActivity.this, MainActivity.class);
+            Intent intent = new Intent(HistoryCarOutMainActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
 
@@ -113,7 +111,7 @@ public class HistoryCarInMainActivity extends ImportantMethod {
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(HistoryCarInMainActivity.this, MainActivity.class);
+        Intent intent = new Intent(HistoryCarOutMainActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
@@ -131,7 +129,7 @@ public class HistoryCarInMainActivity extends ImportantMethod {
             txt_view_nodata.setVisibility(View.VISIBLE);
 
         } else {
-            adapter = new History_CarIn_Data_Adapter(HistoryCarInMainActivity.this, mlist);
+            adapter = new History_CarIn_Data_Adapter(HistoryCarOutMainActivity.this, mlist);
             listview.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             txt_view_nodata.setVisibility(View.GONE);

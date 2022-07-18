@@ -20,6 +20,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.HistoryCarOutMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.HistoryCarInMainActivity"
             android:exported="false" />
         <activity

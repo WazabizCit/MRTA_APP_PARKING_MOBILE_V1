@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -18,18 +17,15 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.mrta_app_parking_mobile_v1.R;
-import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarBookingInDao;
+import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarInDao;
+import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarOutDao;
 import com.example.mrta_app_parking_mobile_v1.manager.HttpManager;
 import com.example.mrta_app_parking_mobile_v1.model.History_data_carin_dao;
-import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_in;
+import com.example.mrta_app_parking_mobile_v1.model.History_data_carout_dao;
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_out_call_checkpayment;
-import com.example.mrta_app_parking_mobile_v1.model.Result_checkcard;
 import com.example.mrta_app_parking_mobile_v1.model.Result_mobile_out_flag_card_no_pay;
 import com.example.mrta_app_parking_mobile_v1.model.Result_mobile_out_payment_cash;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -404,6 +400,66 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                     tag_id_card = null;
                     showToastSuccess("ทำรายการขาออกสำเร็จ", getApplicationContext());
 
+                            String tran_carout_cabinet_send_time = timestamp;
+                            String tran_carout_cabinet_id = response.body().getData().getResultReceiptData().getCabinetId()+"";
+                            String tran_carout_cabinet_code = response.body().getData().getResultReceiptData().getCabinetCode()+"";
+                            String tran_carout_cabinet_tax_code = response.body().getData().getCabinetObj().getCabinetTaxCode()+"";
+                            String tran_carout_cabinet_name = response.body().getData().getCabinetObj().getCabinetName()+"";
+                            String tran_carout_cabinet_type_id = response.body().getData().getCabinetObj().getCabinetTypeId()+"";
+                            String tran_carout_registered_no = response.body().getData().getReceiptNo()+"";
+                            String tran_carout_building_tax = response.body().getData().getCabinetObj().getBuildingTax()+"";
+                            String tran_carout_building_id = response.body().getData().getCabinetObj().getBuildingId()+"";
+                            String tran_carout_building_code = response.body().getData().getCabinetObj().getBuildingCode()+"";
+                            String tran_carout_receipt_no = response.body().getData().getReceiptNo()+"";
+                            String tran_carout_cardcode = response.body().getData().getResultReceiptData().getCardCode()+"";
+                            String tran_carout_cardname = response.body().getData().getCardObj().getCardName()+"";
+                            String tran_carout_license_plate = response.body().getData().getResultReceiptData().getLicensePlateText()+"";
+                            String tran_carout_carparking_in_time = response.body().getData().getResultReceiptData().getCarparkingInTime()+"";
+                            String tran_carout_carparking_out_time = response.body().getData().getResultReceiptData().getCarparkingOutTime()+"";
+                            String tran_carout_car_type_name = response.body().getData().getResultReceiptData().getCarTypeName()+"";
+                            String tran_carout_payment_type_name_th = response.body().getData().getResultReceiptData().getPaymentTypeNameTh()+"";
+                            String tran_carout_estamp_status = response.body().getData().getResultReceiptData().getEstampStatus()+"";
+                            String tran_carout_payment_amount = response.body().getData().getResultReceiptData().getPaymentAmount()+"";
+                            String tran_carout_payment_discount_amount = response.body().getData().getResultReceiptData().getPaymentDiscountAmount()+"";
+                            String tran_carout_payment_fine_amount = response.body().getData().getResultReceiptData().getPaymentFineAmount()+"";
+                            String tran_carout_payment_totle = response.body().getData().getResultReceiptData().getPaymentTotle()+"";
+                            String tran_carout_ref1 = response.body().getData().getResultReceiptData().getRef1()+"";
+                            String tran_carout_ref2 = response.body().getData().getResultReceiptData().getRef2()+"";
+                            String tran_carout_admin_id = name_admin_id+"";
+                            String tran_carout_admin_name = name_admin_name+"";
+                            String tran_carout_response = "ทำรายการสำเร็จ";
+
+                            RecordHistoryCarOutData(
+                                    tran_carout_cabinet_send_time ,
+                                    tran_carout_cabinet_id ,
+                                    tran_carout_cabinet_code ,
+                                    tran_carout_cabinet_tax_code ,
+                                    tran_carout_cabinet_name ,
+                                    tran_carout_cabinet_type_id ,
+                                    tran_carout_registered_no ,
+                                    tran_carout_building_tax ,
+                                    tran_carout_building_id ,
+                                    tran_carout_building_code ,
+                                    tran_carout_receipt_no ,
+                                    tran_carout_cardcode ,
+                                    tran_carout_cardname ,
+                                    tran_carout_license_plate ,
+                                    tran_carout_carparking_in_time ,
+                                    tran_carout_carparking_out_time ,
+                                    tran_carout_car_type_name ,
+                                    tran_carout_payment_type_name_th ,
+                                    data_estamp_type_name ,
+                                    tran_carout_payment_amount ,
+                                    tran_carout_payment_discount_amount ,
+                                    tran_carout_payment_fine_amount ,
+                                    tran_carout_payment_totle ,
+                                    tran_carout_ref1 ,
+                                    tran_carout_ref2 ,
+                                    tran_carout_admin_id ,
+                                    tran_carout_admin_name ,
+                                    tran_carout_response
+                            );
+
 
                 } else {
 
@@ -452,6 +508,67 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                     edit_info.setText("ข้อมูล");
                     tag_id_card = null;
                     showToastSuccess("ทำรายการขาออกสำเร็จ", getApplicationContext());
+
+                    String tran_carout_cabinet_send_time = timestamp;
+                    String tran_carout_cabinet_id = response.body().getData().getResultReceiptData().getCabinetId()+"";
+                    String tran_carout_cabinet_code = response.body().getData().getResultReceiptData().getCabinetCode()+"";
+                    String tran_carout_cabinet_tax_code = response.body().getData().getCabinetObj().getCabinetTaxCode()+"";
+                    String tran_carout_cabinet_name = response.body().getData().getCabinetObj().getCabinetName()+"";
+                    String tran_carout_cabinet_type_id = response.body().getData().getCabinetObj().getCabinetTypeId()+"";
+                    String tran_carout_registered_no = response.body().getData().getReceiptNo()+"";
+                    String tran_carout_building_tax = response.body().getData().getCabinetObj().getBuildingTax()+"";
+                    String tran_carout_building_id = response.body().getData().getCabinetObj().getBuildingId()+"";
+                    String tran_carout_building_code = response.body().getData().getCabinetObj().getBuildingCode()+"";
+                    String tran_carout_receipt_no = response.body().getData().getReceiptNo()+"";
+                    String tran_carout_cardcode = response.body().getData().getResultReceiptData().getCardCode()+"";
+                    String tran_carout_cardname = response.body().getData().getCardObj().getCardName()+"";
+                    String tran_carout_license_plate = response.body().getData().getResultReceiptData().getLicensePlateText()+"";
+                    String tran_carout_carparking_in_time = response.body().getData().getResultReceiptData().getCarparkingInTime()+"";
+                    String tran_carout_carparking_out_time = response.body().getData().getResultReceiptData().getCarparkingOutTime()+"";
+                    String tran_carout_car_type_name = response.body().getData().getResultReceiptData().getCarTypeName()+"";
+                    String tran_carout_payment_type_name_th = response.body().getData().getResultReceiptData().getPaymentTypeNameTh()+"";
+                    String tran_carout_estamp_status = response.body().getData().getResultReceiptData().getEstampStatus()+"";
+                    String tran_carout_payment_amount = response.body().getData().getResultReceiptData().getPaymentAmount()+"";
+                    String tran_carout_payment_discount_amount = response.body().getData().getResultReceiptData().getPaymentDiscountAmount()+"";
+                    String tran_carout_payment_fine_amount = response.body().getData().getResultReceiptData().getPaymentFineAmount()+"";
+                    String tran_carout_payment_totle = response.body().getData().getResultReceiptData().getPaymentTotle()+"";
+                    String tran_carout_ref1 = response.body().getData().getResultReceiptData().getRef1()+"";
+                    String tran_carout_ref2 = response.body().getData().getResultReceiptData().getRef2()+"";
+                    String tran_carout_admin_id = name_admin_id+"";
+                    String tran_carout_admin_name = name_admin_name+"";
+                    String tran_carout_response = "ทำรายการสำเร็จ";
+
+                    RecordHistoryCarOutData(
+                            tran_carout_cabinet_send_time ,
+                            tran_carout_cabinet_id ,
+                            tran_carout_cabinet_code ,
+                            tran_carout_cabinet_tax_code ,
+                            tran_carout_cabinet_name ,
+                            tran_carout_cabinet_type_id ,
+                            tran_carout_registered_no ,
+                            tran_carout_building_tax ,
+                            tran_carout_building_id ,
+                            tran_carout_building_code ,
+                            tran_carout_receipt_no ,
+                            tran_carout_cardcode ,
+                            tran_carout_cardname ,
+                            tran_carout_license_plate ,
+                            tran_carout_carparking_in_time ,
+                            tran_carout_carparking_out_time ,
+                            tran_carout_car_type_name ,
+                            tran_carout_payment_type_name_th ,
+                            data_estamp_type_name ,
+                            tran_carout_payment_amount ,
+                            tran_carout_payment_discount_amount ,
+                            tran_carout_payment_fine_amount ,
+                            tran_carout_payment_totle ,
+                            tran_carout_ref1 ,
+                            tran_carout_ref2 ,
+                            tran_carout_admin_id ,
+                            tran_carout_admin_name ,
+                            tran_carout_response
+                    );
+
 
 
                 } else {
@@ -505,36 +622,76 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
     }
 
 
-    private void RecordHistoryCarInData(String tran_carin_cabinet_id,
-                                        String tran_carin_cabinet_code,
-                                        String tran_carin_building_id,
-                                        String tran_carin_building_code,
-                                        String tran_carin_cabinet_send_time,
-                                        String tran_carin_cardcode,
-                                        String tran_carin_license_plate,
-                                        String tran_carin_admin_id,
-                                        String tran_carin_admin_name,
-                                        String tran_carin_response
+    private void RecordHistoryCarOutData(
+            String tran_carout_cabinet_send_time ,
+            String tran_carout_cabinet_id ,
+            String tran_carout_cabinet_code ,
+            String tran_carout_cabinet_tax_code ,
+            String tran_carout_cabinet_name ,
+            String tran_carout_cabinet_type_id ,
+            String tran_carout_registered_no ,
+            String tran_carout_building_tax ,
+            String tran_carout_building_id ,
+            String tran_carout_building_code ,
+            String tran_carout_receipt_no ,
+            String tran_carout_cardcode ,
+            String tran_carout_cardname ,
+            String tran_carout_license_plate ,
+            String tran_carout_carparking_in_time ,
+            String tran_carout_carparking_out_time ,
+            String tran_carout_car_type_name ,
+            String tran_carout_payment_type_name_th ,
+            String tran_carout_estamp_status ,
+            String tran_carout_payment_amount ,
+            String tran_carout_payment_discount_amount ,
+            String tran_carout_payment_fine_amount ,
+            String tran_carout_payment_totle ,
+            String tran_carout_ref1 ,
+            String tran_carout_ref2 ,
+            String tran_carout_admin_id ,
+            String tran_carout_admin_name ,
+            String tran_carout_response
 
     ) {
 
 
-        History_data_carin_dao list = new History_data_carin_dao();
-        list.setTran_carin_cabinet_id(tran_carin_cabinet_id);
-        list.setTran_carin_cabinet_code(tran_carin_cabinet_code);
-        list.setTran_carin_building_id(tran_carin_building_id);
-        list.setTran_carin_building_code(tran_carin_building_code);
-        list.setTran_carin_cabinet_send_time(tran_carin_cabinet_send_time);
-        list.setTran_carin_cardcode(tran_carin_cardcode);
-        list.setTran_carin_license_plate(tran_carin_license_plate);
-        list.setTran_carin_admin_id(tran_carin_admin_id);
-        list.setTran_carin_admin_name(tran_carin_admin_name);
-        list.setTran_carin_response(tran_carin_response);
+        History_data_carout_dao list = new History_data_carout_dao();
+
+        list.setTran_carout_cabinet_send_time(tran_carout_cabinet_send_time);
+        list.setTran_carout_cabinet_id(tran_carout_cabinet_id);
+        list.setTran_carout_cabinet_code(tran_carout_cabinet_code);
+        list.setTran_carout_cabinet_tax_code(tran_carout_cabinet_tax_code);
+        list.setTran_carout_cabinet_name(tran_carout_cabinet_name);
+        list.setTran_carout_cabinet_type_id(tran_carout_cabinet_type_id);
+        list.setTran_carout_registered_no(tran_carout_registered_no);
+        list.setTran_carout_building_tax(tran_carout_building_tax);
+        list.setTran_carout_building_id(tran_carout_building_id);
+        list.setTran_carout_building_code(tran_carout_building_code);
+        list.setTran_carout_receipt_no(tran_carout_receipt_no);
+        list.setTran_carout_cardcode(tran_carout_cardcode);
+        list.setTran_carout_cardname(tran_carout_cardname);
+        list.setTran_carout_license_plate(tran_carout_license_plate);
+        list.setTran_carout_carparking_in_time(tran_carout_carparking_in_time);
+        list.setTran_carout_carparking_out_time(tran_carout_carparking_out_time);
+        list.setTran_carout_car_type_name(tran_carout_car_type_name);
+        list.setTran_carout_payment_type_name_th(tran_carout_payment_type_name_th);
+        list.setTran_carout_estamp_status(tran_carout_estamp_status);
+        list.setTran_carout_payment_amount(tran_carout_payment_amount);
+        list.setTran_carout_payment_discount_amount(tran_carout_payment_discount_amount);
+        list.setTran_carout_payment_fine_amount(tran_carout_payment_fine_amount);
+        list.setTran_carout_payment_totle(tran_carout_payment_totle);
+        list.setTran_carout_ref1(tran_carout_ref1);
+        list.setTran_carout_ref2(tran_carout_ref2);
+        list.setTran_carout_admin_id(tran_carout_admin_id);
+        list.setTran_carout_admin_name(tran_carout_admin_name);
+        list.setTran_carout_response(tran_carout_response);
 
 
-        DataHistoryCarBookingInDao dao = new DataHistoryCarBookingInDao(getApplicationContext());
+
+
+        DataHistoryCarOutDao dao = new DataHistoryCarOutDao(getApplicationContext());
         dao.open();
-        dao.add_tran_history_car_in(list);
+        dao.add_tran_history_car_out(list);
         dao.close();
 
 
