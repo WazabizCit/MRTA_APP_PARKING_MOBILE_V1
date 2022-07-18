@@ -12,6 +12,7 @@ public class History_data_carout_dao {
     String tran_carout_building_tax ;
     String tran_carout_building_id ;
     String tran_carout_building_code ;
+    String tran_carout_building_name ;
     String tran_carout_receipt_no ;
     String tran_carout_cardcode ;
     String tran_carout_cardname ;
@@ -30,6 +31,14 @@ public class History_data_carout_dao {
     String tran_carout_admin_id ;
     String tran_carout_admin_name ;
     String tran_carout_response ;
+
+    public String getTran_carout_building_name() {
+        return tran_carout_building_name;
+    }
+
+    public void setTran_carout_building_name(String tran_carout_building_name) {
+        this.tran_carout_building_name = tran_carout_building_name;
+    }
 
     public int getTran_carout_id() {
         return tran_carout_id;

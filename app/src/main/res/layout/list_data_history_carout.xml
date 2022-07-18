@@ -33,10 +33,10 @@ android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="500dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_weight="1.4"
+                android:layout_weight="2"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -45,7 +45,7 @@ android:layout_height="match_parent">
                     android:layout_height="match_parent"
                     android:layout_weight="0.9"
                     android:orientation      ="vertical"
-                    android:weightSum="8">
+                    android:weightSum="15">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -187,6 +187,19 @@ android:layout_height="match_parent">
                         />
 
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="ผู้ทำรายการ :"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        />
+
+
+
+
 
 
 
@@ -203,7 +216,7 @@ android:layout_height="match_parent">
                     android:layout_height="match_parent"
                     android:layout_weight="1.1"
                     android:orientation="vertical"
-                    android:weightSum="8">
+                    android:weightSum="15">
 
                     <TextView
                         android:id="@+id/txt_date"
@@ -216,7 +229,7 @@ android:layout_height="match_parent">
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_station"
+                        android:id="@+id/txt_building_name"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -224,75 +237,152 @@ android:layout_height="match_parent">
                         android:textColor="@color/colorwhite"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
                     <TextView
-                        android:id="@+id/txt_cabinet_code"
+                        android:id="@+id/txt_estamp_status"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="cabinet_code"
+                        android:text="ประเภทลูกค้า"
                         android:textColor="@color/colorwhite"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
 
                     <TextView
-                        android:id="@+id/txt_building_id"
+                        android:id="@+id/txt_car_type_name"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="building_id"
+                        android:text="ประเภทรถ"
                         android:textColor="@color/colorwhite"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_building_code"
+                        android:id="@+id/txt_receipt_no"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="building_code"
+                        android:text="invoice"
                         android:textColor="@color/colorwhite"
                         android:textSize="13sp"
                         android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/txt_carparking_in_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="เวลาเข้า"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+
+                    <TextView
+                        android:id="@+id/txt_carparking_out_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="เวลาออก"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/txt_license_plate_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="ทะเบียนรถ"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+
+                    <TextView
+                        android:id="@+id/txt_card_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="เลขบัตร"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
 
                     <TextView
                         android:id="@+id/txt_card_code"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="card_code"
+                        android:text="cardcode"
                         android:textColor="@color/colorwhite"
                         android:textSize="13sp"
                         android:textStyle="bold" />
+
 
 
                     <TextView
-                        android:id="@+id/txt_license_plate"
+                        android:id="@+id/txt_payment_amount"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="license_plate"
+                        android:text="ค่าจอดรถ"
                         android:textColor="@color/colorwhite"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
+
+
+                    <TextView
+                        android:id="@+id/txt_payment_fine_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="ค่าปรับค้างคืน"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+
+                    <TextView
+                        android:id="@+id/txt_payment_card_lost"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="0.00"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+
+                    <TextView
+                        android:id="@+id/txt_payment_totle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="ราคาสุทธิ"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txt_admin_name"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="admin_name"
+                        android:text="ผู้ทำรายการ"
                         android:textColor="@color/colorwhite"
                         android:textSize="13sp"
                         android:textStyle="bold" />
-
-
-
-
-
-
-
 
                 </LinearLayout>
 

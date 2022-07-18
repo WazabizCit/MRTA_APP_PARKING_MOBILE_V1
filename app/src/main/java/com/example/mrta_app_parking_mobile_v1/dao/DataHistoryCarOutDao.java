@@ -47,24 +47,25 @@ public class DataHistoryCarOutDao {
             dao.setTran_carout_building_tax(cursor.getString(8));
             dao.setTran_carout_building_id(cursor.getString(9));
             dao.setTran_carout_building_code(cursor.getString(10));
-            dao.setTran_carout_receipt_no(cursor.getString(11));
-            dao.setTran_carout_cardcode(cursor.getString(12));
-            dao.setTran_carout_cardname(cursor.getString(13));
-            dao.setTran_carout_license_plate(cursor.getString(14));
-            dao.setTran_carout_carparking_in_time(cursor.getString(15));
-            dao.setTran_carout_carparking_out_time(cursor.getString(16));
-            dao.setTran_carout_car_type_name(cursor.getString(17));
-            dao.setTran_carout_payment_type_name_th(cursor.getString(18));
-            dao.setTran_carout_estamp_status(cursor.getString(19));
-            dao.setTran_carout_payment_amount(cursor.getString(20));
-            dao.setTran_carout_payment_discount_amount(cursor.getString(21));
-            dao.setTran_carout_payment_fine_amount(cursor.getString(22));
-            dao.setTran_carout_payment_totle(cursor.getString(23));
-            dao.setTran_carout_ref1(cursor.getString(24));
-            dao.setTran_carout_ref2(cursor.getString(25));
-            dao.setTran_carout_admin_id(cursor.getString(26));
-            dao.setTran_carout_admin_name(cursor.getString(27));
-            dao.setTran_carout_response(cursor.getString(28));
+            dao.setTran_carout_building_name(cursor.getString(11));
+            dao.setTran_carout_receipt_no(cursor.getString(12));
+            dao.setTran_carout_cardcode(cursor.getString(13));
+            dao.setTran_carout_cardname(cursor.getString(14));
+            dao.setTran_carout_license_plate(cursor.getString(15));
+            dao.setTran_carout_carparking_in_time(cursor.getString(16));
+            dao.setTran_carout_carparking_out_time(cursor.getString(17));
+            dao.setTran_carout_car_type_name(cursor.getString(18));
+            dao.setTran_carout_payment_type_name_th(cursor.getString(19));
+            dao.setTran_carout_estamp_status(cursor.getString(20));
+            dao.setTran_carout_payment_amount(cursor.getString(21));
+            dao.setTran_carout_payment_discount_amount(cursor.getString(22));
+            dao.setTran_carout_payment_fine_amount(cursor.getString(23));
+            dao.setTran_carout_payment_totle(cursor.getString(24));
+            dao.setTran_carout_ref1(cursor.getString(25));
+            dao.setTran_carout_ref2(cursor.getString(26));
+            dao.setTran_carout_admin_id(cursor.getString(27));
+            dao.setTran_carout_admin_name(cursor.getString(28));
+            dao.setTran_carout_response(cursor.getString(29));
 
 
 
@@ -92,6 +93,7 @@ public class DataHistoryCarOutDao {
         values.put("tran_carout_building_tax", list.getTran_carout_building_tax());
         values.put("tran_carout_building_id", list.getTran_carout_building_id());
         values.put("tran_carout_building_code", list.getTran_carout_building_code());
+        values.put("tran_carout_building_name", list.getTran_carout_building_name());
         values.put("tran_carout_receipt_no", list.getTran_carout_receipt_no());
         values.put("tran_carout_cardcode", list.getTran_carout_cardcode());
         values.put("tran_carout_cardname", list.getTran_carout_cardname());

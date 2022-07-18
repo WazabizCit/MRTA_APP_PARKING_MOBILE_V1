@@ -34,7 +34,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
-
     private static final String tableDataHistoryCarOutCreateSQL = "CREATE TABLE tran_history_car_out("
             + "tran_carout_id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "tran_carout_cabinet_send_time TEXT  DEFAULT '',"
@@ -47,6 +46,7 @@ public class DbHelper extends SQLiteOpenHelper {
             + "tran_carout_building_tax TEXT  DEFAULT '',"
             + "tran_carout_building_id TEXT  DEFAULT '',"
             + "tran_carout_building_code TEXT  DEFAULT '',"
+            + "tran_carout_building_name TEXT  DEFAULT '',"
             + "tran_carout_receipt_no TEXT  DEFAULT '',"
             + "tran_carout_cardcode TEXT  DEFAULT '',"
             + "tran_carout_cardname TEXT  DEFAULT '',"

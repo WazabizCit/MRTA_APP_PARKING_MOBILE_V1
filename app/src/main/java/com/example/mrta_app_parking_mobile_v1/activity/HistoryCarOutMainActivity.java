@@ -13,8 +13,11 @@ import android.widget.TextView;
 
 import com.example.mrta_app_parking_mobile_v1.R;
 import com.example.mrta_app_parking_mobile_v1.adapter.History_CarIn_Data_Adapter;
+import com.example.mrta_app_parking_mobile_v1.adapter.History_CarOut_Data_Adapter;
 import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarInDao;
+import com.example.mrta_app_parking_mobile_v1.dao.DataHistoryCarOutDao;
 import com.example.mrta_app_parking_mobile_v1.model.History_data_carin_dao;
+import com.example.mrta_app_parking_mobile_v1.model.History_data_carout_dao;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
 
 import java.util.ArrayList;
@@ -24,8 +27,8 @@ public class HistoryCarOutMainActivity extends ImportantMethod {
 
 
     ListView listview;
-    History_CarIn_Data_Adapter adapter;
-    ArrayList<History_data_carin_dao> mlist;
+    History_CarOut_Data_Adapter adapter;
+    ArrayList<History_data_carout_dao> mlist;
     TextView txt_view_nodata;
     SwipeRefreshLayout swipeRefreshLayout;
     ProgressDialog progressDoalog;
@@ -120,16 +123,16 @@ public class HistoryCarOutMainActivity extends ImportantMethod {
     private void getListHistory() {
         String datetime = getCurrentDate();
 
-        DataHistoryCarInDao dao = new DataHistoryCarInDao(getApplicationContext());
+        DataHistoryCarOutDao dao = new DataHistoryCarOutDao(getApplicationContext());
         dao.open();
-        ArrayList<History_data_carin_dao> mlist = dao.getDataHistory();
+        ArrayList<History_data_carout_dao> mlist = dao.getDataHistory();
         dao.close();
         if (mlist.size() == 0) {
             listview.setVisibility(View.GONE);
             txt_view_nodata.setVisibility(View.VISIBLE);
 
         } else {
-            adapter = new History_CarIn_Data_Adapter(HistoryCarOutMainActivity.this, mlist);
+            adapter = new History_CarOut_Data_Adapter(HistoryCarOutMainActivity.this, mlist);
             listview.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             txt_view_nodata.setVisibility(View.GONE);

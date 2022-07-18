@@ -410,6 +410,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                             String tran_carout_building_tax = response.body().getData().getCabinetObj().getBuildingTax()+"";
                             String tran_carout_building_id = response.body().getData().getCabinetObj().getBuildingId()+"";
                             String tran_carout_building_code = response.body().getData().getCabinetObj().getBuildingCode()+"";
+                            String tran_carout_building_name = response.body().getData().getCabinetObj().getBuildingName()+"";
                             String tran_carout_receipt_no = response.body().getData().getReceiptNo()+"";
                             String tran_carout_cardcode = response.body().getData().getResultReceiptData().getCardCode()+"";
                             String tran_carout_cardname = response.body().getData().getCardObj().getCardName()+"";
@@ -440,6 +441,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                                     tran_carout_building_tax ,
                                     tran_carout_building_id ,
                                     tran_carout_building_code ,
+                                    tran_carout_building_name,
                                     tran_carout_receipt_no ,
                                     tran_carout_cardcode ,
                                     tran_carout_cardname ,
@@ -507,6 +509,8 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                     edit_id_card.setText("เลขบัตร");
                     edit_info.setText("ข้อมูล");
                     tag_id_card = null;
+
+
                     showToastSuccess("ทำรายการขาออกสำเร็จ", getApplicationContext());
 
                     String tran_carout_cabinet_send_time = timestamp;
@@ -519,6 +523,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                     String tran_carout_building_tax = response.body().getData().getCabinetObj().getBuildingTax()+"";
                     String tran_carout_building_id = response.body().getData().getCabinetObj().getBuildingId()+"";
                     String tran_carout_building_code = response.body().getData().getCabinetObj().getBuildingCode()+"";
+                    String tran_carout_building_name = response.body().getData().getCabinetObj().getBuildingName()+"";
                     String tran_carout_receipt_no = response.body().getData().getReceiptNo()+"";
                     String tran_carout_cardcode = response.body().getData().getResultReceiptData().getCardCode()+"";
                     String tran_carout_cardname = response.body().getData().getCardObj().getCardName()+"";
@@ -549,6 +554,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                             tran_carout_building_tax ,
                             tran_carout_building_id ,
                             tran_carout_building_code ,
+                            tran_carout_building_name ,
                             tran_carout_receipt_no ,
                             tran_carout_cardcode ,
                             tran_carout_cardname ,
@@ -633,6 +639,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
             String tran_carout_building_tax ,
             String tran_carout_building_id ,
             String tran_carout_building_code ,
+            String tran_carout_building_name ,
             String tran_carout_receipt_no ,
             String tran_carout_cardcode ,
             String tran_carout_cardname ,
@@ -667,6 +674,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
         list.setTran_carout_building_tax(tran_carout_building_tax);
         list.setTran_carout_building_id(tran_carout_building_id);
         list.setTran_carout_building_code(tran_carout_building_code);
+        list.setTran_carout_building_name(tran_carout_building_name);
         list.setTran_carout_receipt_no(tran_carout_receipt_no);
         list.setTran_carout_cardcode(tran_carout_cardcode);
         list.setTran_carout_cardname(tran_carout_cardname);
