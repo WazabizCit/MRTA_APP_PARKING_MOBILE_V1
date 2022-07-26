@@ -24,6 +24,8 @@ public class DbHelper extends SQLiteOpenHelper {
             + "tran_carin_building_code TEXT  DEFAULT '',"
             + "tran_carin_cabinet_send_time TEXT  DEFAULT '',"
             + "tran_carin_cardcode TEXT DEFAULT '',"
+            + "tran_carin_cardname TEXT DEFAULT '',"
+            + "tran_carin_card_type_name TEXT DEFAULT '',"
             + "tran_carin_license_plate TEXT DEFAULT '',"
             + "tran_carin_admin_id TEXT DEFAULT '',"
             + "tran_carin_admin_name TEXT DEFAULT '',"

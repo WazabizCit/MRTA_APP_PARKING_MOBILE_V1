@@ -15,6 +15,24 @@ public class History_data_carin_dao {
     String tran_carin_admin_id;
     String tran_carin_admin_name;
     String tran_carin_response;
+    String tran_carin_cardname;
+    String tran_carin_card_type_name;
+
+    public String getTran_carin_cardname() {
+        return tran_carin_cardname;
+    }
+
+    public void setTran_carin_cardname(String tran_carin_cardname) {
+        this.tran_carin_cardname = tran_carin_cardname;
+    }
+
+    public String getTran_carin_card_type_name() {
+        return tran_carin_card_type_name;
+    }
+
+    public void setTran_carin_card_type_name(String tran_carin_card_type_name) {
+        this.tran_carin_card_type_name = tran_carin_card_type_name;
+    }
 
     public int getTran_carin_id() {
         return tran_carin_id;

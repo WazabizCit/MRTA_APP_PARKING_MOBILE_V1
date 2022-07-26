@@ -16,6 +16,9 @@ public class SettingMainActivity extends ImportantMethod implements View.OnClick
 
     CardView btn_setting_ip_address;
     CardView btn_setting_device;
+    CardView btn_setting_ip_printer;
+
+
 
 
 
@@ -47,10 +50,12 @@ public class SettingMainActivity extends ImportantMethod implements View.OnClick
 
         btn_setting_ip_address = findViewById(R.id.btn_setting_ip_address);
         btn_setting_device = findViewById(R.id.btn_setting_device);
+        btn_setting_ip_printer   = findViewById(R.id.btn_setting_ip_printer);
 
 
         btn_setting_ip_address.setOnClickListener(this);
         btn_setting_device.setOnClickListener(this);
+        btn_setting_ip_printer.setOnClickListener(this);
 
 
     }
@@ -95,6 +100,14 @@ public class SettingMainActivity extends ImportantMethod implements View.OnClick
             startActivity(intent);
             finish();
 
+        }
+
+        else if (view == btn_setting_ip_printer){
+
+            Intent intent = new Intent(SettingMainActivity.this, SubSettingPrinterMainActivity.class);
+            startActivity(intent);
+            finish();
+            
         }
 
 

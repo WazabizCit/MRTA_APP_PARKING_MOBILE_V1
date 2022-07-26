@@ -20,6 +20,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.SubSettingPrinterMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.HistoryCarOutMainActivity"
             android:exported="false" />
         <activity

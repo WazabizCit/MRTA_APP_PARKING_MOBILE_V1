@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".activity.SubSettingPrinterMainActivity">
+
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorToolbar"
+    android:elevation="4dp"
+    app:popupTheme="@style/Theme.AppCompat.Light"
+    app:theme="@style/ToolbarColoredBackArrow"
+    >
+
+</android.support.v7.widget.Toolbar>
+
+
+
+<android.support.design.widget.TextInputLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="40dp"
+
+    >
+
+    <EditText
+        android:id="@+id/edit_ip_printer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="IP Address Printer"
+        android:inputType="text"
+        android:textSize="20sp" />
+
+</android.support.design.widget.TextInputLayout>
+
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="40dp">
+
+
+
+    <RadioGroup
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/radio_carin_not_print"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ตั้งค่าเครื่องขาเข้า"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_carin_print_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="พิมพ์ทั้งหมด" />
+
+        <RadioButton
+            android:id="@+id/radio_carin_not_print"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ไม่พิมพ์" />
+
+    </RadioGroup>
+
+
+
+
+</LinearLayout>
+
+
+
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="40dp">
+
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/radio_carout_not_print"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ตั้งค่าเครื่องขาออก"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_carout_print_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="พิมพ์ทั้งหมด" />
+
+        <RadioButton
+            android:id="@+id/radio_carout_print_price_only"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="พิมพ์เฉพาะมียอดเงิน" />
+
+        <RadioButton
+            android:id="@+id/radio_carout_not_print"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ไม่พิมพ์" />
+
+    </RadioGroup>
+
+
+
+
+</LinearLayout>
+
+
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_ok"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginTop="40dp"
+    android:clickable="true"
+    card_view:cardBackgroundColor="@color/colorblack"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="บันทึก"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

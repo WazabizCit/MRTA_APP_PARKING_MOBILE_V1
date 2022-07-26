@@ -42,10 +42,15 @@ public class DataHistoryCarInDao {
             dao.setTran_carin_building_code(cursor.getString(4));
             dao.setTran_carin_cabinet_send_time(cursor.getString(5));
             dao.setTran_carin_cardcode(cursor.getString(6));
-            dao.setTran_carin_license_plate(cursor.getString(7));
-            dao.setTran_carin_admin_id(cursor.getString(8));
-            dao.setTran_carin_admin_name(cursor.getString(9));
-            dao.setTran_carin_response(cursor.getString(10));
+            dao.setTran_carin_cardname(cursor.getString(7));
+            dao.setTran_carin_card_type_name(cursor.getString(8));
+            dao.setTran_carin_license_plate(cursor.getString(9));
+            dao.setTran_carin_admin_id(cursor.getString(10));
+            dao.setTran_carin_admin_name(cursor.getString(11));
+            dao.setTran_carin_response(cursor.getString(12));
+
+
+
 
             list.add(dao);
             cursor.moveToNext();
@@ -71,7 +76,8 @@ public class DataHistoryCarInDao {
         values.put("tran_carin_admin_id", list.getTran_carin_admin_id());
         values.put("tran_carin_admin_name", list.getTran_carin_admin_name());
         values.put("tran_carin_response", list.getTran_carin_response());
-
+        values.put("tran_carin_cardname", list.getTran_carin_cardname());
+        values.put("tran_carin_card_type_name", list.getTran_carin_card_type_name());
 
 
 

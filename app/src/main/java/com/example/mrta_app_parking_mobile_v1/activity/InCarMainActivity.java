@@ -55,8 +55,6 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     private static final String PREF_ADMIN_NAME = "pref_admin_name";
 
 
-
-
     private final int DefaultInt = 0;
     private final String DefaultString = "null";
     private String ip_address;
@@ -67,8 +65,8 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     private String name_building_code;
     private String name_admin_id;
     private String name_admin_name;
-
-
+    private String name_card_name;
+    private String name_card_type_name;
 
 
     private DrawerLayout drawer;
@@ -121,7 +119,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
             showToastWarning("nfc not support your device", this);
             return;
         }
-        mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
         //////////////////////////  NFC //////////////////////////
 
@@ -173,7 +171,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
         progressDoalog.setCancelable(true);
         progressDoalog.show();
 
-        final String timestamp  =   getCurrentTimeStamp();
+        final String timestamp = getCurrentTimeStamp();
 
         try {
 
@@ -187,18 +185,24 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
             showToastLog(TAG, "formattag_DEC: " + tag_id_card);
 
             Call<Result_checkcard> call = HttpManager.getInstance(ip_address, port).getService().action_checkcard_in(
-                    name_cabinet_id,name_cabinet_code,name_building_id,name_building_code,timestamp,tag_id_card,name_admin_id);
+                    name_cabinet_id, name_cabinet_code, name_building_id, name_building_code, timestamp, tag_id_card, name_admin_id);
             call.enqueue(new Callback<Result_checkcard>() {
                 @Override
                 public void onResponse(Call<Result_checkcard> call, Response<Result_checkcard> response) {
 
-                    if( null == response.body().getError()){
+                    if (null == response.body().getError()) {
+
+
                         String type_card = response.body().getData().getCardTypeName();
                         edit_id_card.setText(tag_id_card + "");
-                        edit_type_card.setText(type_card+"");
-                    }else{
+                        edit_type_card.setText(type_card + "");
+                        name_card_name = response.body().getData().getCardName() + "";
+                        name_card_type_name = response.body().getData().getCardTypeName() + "";
 
-                        String txt_error = response.body().getMessage()+"";
+
+                    } else {
+
+                        String txt_error = response.body().getMessage() + "";
                         showToastWarning(txt_error, InCarMainActivity.this);
                         tag_id_card = null;
                         edit_id_card.setText("เลข Card");
@@ -317,7 +321,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
                             tag_id_card = null;
                             edit_type_card.setText("ประเภทบัตร");
                             showToastSuccess(response.body().getMessage(), getApplicationContext());
-                            RecordHistoryCarInData(name_cabinet_id,name_cabinet_code,name_building_id,name_building_code,timestamp,card_code,license_plate,name_admin_id,name_admin_name,response.body().getMessage());
+                            RecordHistoryCarInData(name_cabinet_id, name_cabinet_code, name_building_id, name_building_code, timestamp, card_code, license_plate, name_admin_id, name_admin_name, response.body().getMessage(), name_card_name, name_card_type_name);
 
                         } else {
 
@@ -339,7 +343,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
                 });
 
 
-            }else{
+            } else {
                 progressDoalog.dismiss();
             }
 
@@ -382,17 +386,19 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     }
 
 
+    private void RecordHistoryCarInData(String tran_carin_cabinet_id,
+                                        String tran_carin_cabinet_code,
+                                        String tran_carin_building_id,
+                                        String tran_carin_building_code,
+                                        String tran_carin_cabinet_send_time,
+                                        String tran_carin_cardcode,
+                                        String tran_carin_license_plate,
+                                        String tran_carin_admin_id,
+                                        String tran_carin_admin_name,
+                                        String tran_carin_response,
+                                        String tran_carin_cardname,
+                                        String tran_carin_card_type_name
 
-    private void RecordHistoryCarInData(       String tran_carin_cabinet_id,
-                                               String tran_carin_cabinet_code,
-                                               String tran_carin_building_id,
-                                               String tran_carin_building_code,
-                                               String tran_carin_cabinet_send_time,
-                                               String tran_carin_cardcode,
-                                               String tran_carin_license_plate,
-                                               String tran_carin_admin_id,
-                                               String tran_carin_admin_name,
-                                               String tran_carin_response
 
     ) {
 
@@ -408,18 +414,17 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
         list.setTran_carin_admin_id(tran_carin_admin_id);
         list.setTran_carin_admin_name(tran_carin_admin_name);
         list.setTran_carin_response(tran_carin_response);
+        list.setTran_carin_cardname(tran_carin_cardname);
+        list.setTran_carin_card_type_name(tran_carin_card_type_name);
 
 
-        DataHistoryCarInDao  dao = new DataHistoryCarInDao(getApplicationContext());
+        DataHistoryCarInDao dao = new DataHistoryCarInDao(getApplicationContext());
         dao.open();
         dao.add_tran_history_car_in(list);
         dao.close();
 
 
     }
-
-
-
 
 
     private void loadPreferences() {
@@ -453,9 +458,6 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
         );
 
     }
-
-
-
 
 
 }

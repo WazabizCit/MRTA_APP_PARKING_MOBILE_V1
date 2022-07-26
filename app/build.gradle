@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 28
 
     defaultConfig {
         applicationId "com.example.mrta_app_parking_mobile_v1"
@@ -40,5 +40,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation project(path: ':TheCheeseLibrary')
+    implementation files('libs/ZSDK_ANDROID_API.jar')
 
 }
