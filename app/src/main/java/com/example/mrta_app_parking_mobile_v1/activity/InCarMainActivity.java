@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
+import android.os.Looper;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,8 @@ import com.example.mrta_app_parking_mobile_v1.model.History_data_carin_dao;
 import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_in;
 import com.example.mrta_app_parking_mobile_v1.model.Result_checkcard;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
+import com.zebra.sdk.comm.BluetoothConnectionInsecure;
+import com.zebra.sdk.comm.Connection;
 
 import java.io.IOException;
 
@@ -43,7 +46,9 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
 
     String TAG = "InCarMainActivity";
 
-
+    private static final String PREF_MAC_ADDRESS_PRINT = "pref_mac_address_print";
+    private static final String PREF_STATUS_RADIO_CARIN_NOT_PRINT = "pref_status_radio_carin_not_print";
+    private static final String PREF_STATUS_RADIO_CARIN_PRINT_ALL = "pref_status_radio_carin_print_all";
     private static final String PREFS_NAME = "preferences";
     private static final String PREF_IP_ADDRESS = "pref_ip_address";
     private static final String PREF_PORT = "pref_port";
@@ -53,8 +58,9 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     private static final String PREF_BUILDING_CODE = "pref_building_code";
     private static final String PREF_ADMIN_ID = "pref_admin_id";
     private static final String PREF_ADMIN_NAME = "pref_admin_name";
+    private static final String PREF_BUILDING_NAME = "pref_building_name";
 
-
+    private final boolean DefaultBoolean = false;
     private final int DefaultInt = 0;
     private final String DefaultString = "null";
     private String ip_address;
@@ -67,6 +73,10 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     private String name_admin_name;
     private String name_card_name;
     private String name_card_type_name;
+    private String name_mac_address_print = "0";
+    private boolean status_radio_carin_not_print;
+    private boolean status_radio_carin_print_all;
+    private String name_building_name;
 
 
     private DrawerLayout drawer;
@@ -223,7 +233,6 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
                     if (progressDoalog != null) {
                         progressDoalog.dismiss();
                     }
-
                 }
             });
 
@@ -292,6 +301,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+
         if (card_ok == v) {
 
             progressDoalog = new ProgressDialog(this);
@@ -322,6 +332,21 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
                             edit_type_card.setText("ประเภทบัตร");
                             showToastSuccess(response.body().getMessage(), getApplicationContext());
                             RecordHistoryCarInData(name_cabinet_id, name_cabinet_code, name_building_id, name_building_code, timestamp, card_code, license_plate, name_admin_id, name_admin_name, response.body().getMessage(), name_card_name, name_card_type_name);
+
+                            if (status_radio_carin_not_print == true) {
+
+                                showToastLog(TAG, "status_radio_carin_not_print");
+
+
+                            } else if (status_radio_carin_print_all == true) {
+
+                                //TODO Print Car IN
+                                showToastLog(TAG, "status_radio_carin_print_all");
+                                sendZplOverBluetooth(name_cabinet_code, license_plate, timestamp, card_code,name_card_name,name_admin_name,name_card_type_name,name_building_name);
+
+
+                            }
+
 
                         } else {
 
@@ -433,6 +458,9 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
                 Context.MODE_PRIVATE);
 
         // Get value
+        name_mac_address_print = settings.getString(PREF_MAC_ADDRESS_PRINT, DefaultString);
+        status_radio_carin_print_all = settings.getBoolean(PREF_STATUS_RADIO_CARIN_PRINT_ALL, DefaultBoolean);
+        status_radio_carin_not_print = settings.getBoolean(PREF_STATUS_RADIO_CARIN_NOT_PRINT, DefaultBoolean);
         name_cabinet_id = settings.getString(PREF_CABINET_ID, DefaultString);
         name_cabinet_code = settings.getString(PREF_CABINET_CODE, DefaultString);
         name_building_id = settings.getString(PREF_BUILDING_ID, DefaultString);
@@ -441,6 +469,8 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
         name_admin_name = settings.getString(PREF_ADMIN_NAME, DefaultString);
         ip_address = settings.getString(PREF_IP_ADDRESS, DefaultString);
         port = settings.getString(PREF_PORT, DefaultString);
+        name_building_name = settings.getString(PREF_BUILDING_NAME , DefaultString);
+
 
 
         showToastLog(TAG,
@@ -452,10 +482,47 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
                         ",name_admin_name :" + name_admin_name +
                         ",ip_address :" + ip_address +
                         ",port :" + port +
+                        ",status_radio_carin_print_all :" + status_radio_carin_print_all +
+                        ",status_radio_carin_not_print :" + status_radio_carin_not_print +
                         ""
 
 
         );
+
+    }
+
+
+    private void sendZplOverBluetooth(final String location_zpl, final String license_plate, final String time, final String card_code,final String card_name,final String cashier,final String type_car,final String name_building_name) {
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    // Instantiate connection for given Bluetooth&reg; MAC Address.
+                    Connection thePrinterConn = new BluetoothConnectionInsecure(name_mac_address_print);
+
+                    // Initialize
+                    Looper.prepare();
+
+                    // Open the connection - physical connection is established here.
+                    thePrinterConn.open();
+
+                    String zpl = getStringZplIN(location_zpl, license_plate, time, card_code,card_name,cashier,type_car,name_building_name);
+                    thePrinterConn.write(zpl.getBytes());
+
+
+                    // Make sure the data got to the printer before closing the connection
+                    Thread.sleep(500);
+
+                    // Close the connection to release resources.
+                    thePrinterConn.close();
+
+                    Looper.myLooper().quit();
+                } catch (Exception e) {
+                    // Handle communications error here.
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
     }
 

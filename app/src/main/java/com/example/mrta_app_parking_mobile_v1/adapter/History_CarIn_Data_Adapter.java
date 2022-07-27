@@ -56,8 +56,6 @@ public class History_CarIn_Data_Adapter extends BaseAdapter {
 
 
 
-
-
         TextView txt_date  = (TextView) v.findViewById(R.id.txt_date);
         TextView txt_cabinet_id  = (TextView) v.findViewById(R.id.txt_cabinet_id);
         TextView txt_cabinet_code  = (TextView) v.findViewById(R.id.txt_cabinet_code);
@@ -66,10 +64,7 @@ public class History_CarIn_Data_Adapter extends BaseAdapter {
         TextView txt_card_code  = (TextView) v.findViewById(R.id.txt_card_code);
         TextView txt_license_plate  = (TextView) v.findViewById(R.id.txt_license_plate);
         TextView txt_admin_name  = (TextView) v.findViewById(R.id.txt_admin_name);
-
-
-
-
+        TextView txt_status  = (TextView) v.findViewById(R.id.txt_status);
 
 
 
@@ -84,6 +79,8 @@ public class History_CarIn_Data_Adapter extends BaseAdapter {
         String card_code  = list.getTran_carin_cardcode();
         String license_plate  = list.getTran_carin_license_plate();
         String admin_name  = list.getTran_carin_admin_name();
+        String status  = list.getTran_carin_response()+"";
+
 
 
 
@@ -102,6 +99,7 @@ public class History_CarIn_Data_Adapter extends BaseAdapter {
         txt_card_code.setText(card_code+"");
         txt_license_plate.setText(license_plate+"");
         txt_admin_name.setText(admin_name+"");
+        txt_status.setText(status+"");
 
 
 

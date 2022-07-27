@@ -27,6 +27,7 @@ public class SubSettingDeviceMainActivity extends ImportantMethod implements Vie
     private static final String PREF_BUILDING_ID = "pref_building_id";
     private static final String PREF_BUILDING_CODE = "pref_building_code";
     private static final String PREF_BUILDING_NAME = "pref_building_name";
+    private static final String PREF_BUILDING_TEL = "pref_building_tel";
 
 
 
@@ -38,6 +39,8 @@ public class SubSettingDeviceMainActivity extends ImportantMethod implements Vie
     private String name_building_id;
     private String name_building_code;
     private String name_building_name;
+    private String name_building_tel;
+
 
 
 
@@ -47,6 +50,7 @@ public class SubSettingDeviceMainActivity extends ImportantMethod implements Vie
     EditText edit_building_id;
     EditText edit_building_code;
     EditText edit_building_name;
+    EditText edit_building_tel;
     CardView card_ok;
 
 
@@ -81,6 +85,7 @@ public class SubSettingDeviceMainActivity extends ImportantMethod implements Vie
         edit_building_id = findViewById(R.id.edit_building_id);
         edit_building_code = findViewById(R.id.edit_building_code);
         edit_building_name = findViewById(R.id.edit_building_name);
+        edit_building_tel  = findViewById(R.id.edit_building_tel);
         card_ok = findViewById(R.id.card_ok);
 
 
@@ -98,6 +103,14 @@ public class SubSettingDeviceMainActivity extends ImportantMethod implements Vie
 
         edit_building_name.setText(name_building_name + "");
         edit_building_name.setSelection(name_building_name.length());
+
+
+
+
+        edit_building_tel.setText(name_building_tel + "");
+        edit_building_tel.setSelection(name_building_tel.length());
+
+
 
 
 
@@ -154,7 +167,7 @@ public class SubSettingDeviceMainActivity extends ImportantMethod implements Vie
         name_building_id = settings.getString(PREF_BUILDING_ID , DefaultString);
         name_building_code = settings.getString(PREF_BUILDING_CODE , DefaultString);
         name_building_name = settings.getString(PREF_BUILDING_NAME , DefaultString);
-
+        name_building_tel = settings.getString(PREF_BUILDING_TEL , DefaultString);
 
     }
 
@@ -170,6 +183,8 @@ public class SubSettingDeviceMainActivity extends ImportantMethod implements Vie
 
 
 
+
+
     private void save_references() {
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -181,10 +196,12 @@ public class SubSettingDeviceMainActivity extends ImportantMethod implements Vie
         editor.putString(PREF_BUILDING_ID , edit_building_id.getText() + "");
         editor.putString(PREF_BUILDING_CODE , edit_building_code.getText() + "");
         editor.putString(PREF_BUILDING_NAME , edit_building_name.getText() + "");
+        editor.putString(PREF_BUILDING_TEL , edit_building_tel.getText() + "");
         editor.commit();
 
 
     }
+
 
 
 

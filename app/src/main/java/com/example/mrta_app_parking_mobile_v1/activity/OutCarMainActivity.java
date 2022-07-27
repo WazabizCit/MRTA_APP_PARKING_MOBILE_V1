@@ -406,7 +406,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                             String tran_carout_cabinet_tax_code = response.body().getData().getCabinetObj().getCabinetTaxCode()+"";
                             String tran_carout_cabinet_name = response.body().getData().getCabinetObj().getCabinetName()+"";
                             String tran_carout_cabinet_type_id = response.body().getData().getCabinetObj().getCabinetTypeId()+"";
-                            String tran_carout_registered_no = response.body().getData().getReceiptNo()+"";
+                            String tran_carout_registered_no = response.body().getData().getCabinetObj().getRegisteredNo()+"";
                             String tran_carout_building_tax = response.body().getData().getCabinetObj().getBuildingTax()+"";
                             String tran_carout_building_id = response.body().getData().getCabinetObj().getBuildingId()+"";
                             String tran_carout_building_code = response.body().getData().getCabinetObj().getBuildingCode()+"";
@@ -519,7 +519,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                     String tran_carout_cabinet_tax_code = response.body().getData().getCabinetObj().getCabinetTaxCode()+"";
                     String tran_carout_cabinet_name = response.body().getData().getCabinetObj().getCabinetName()+"";
                     String tran_carout_cabinet_type_id = response.body().getData().getCabinetObj().getCabinetTypeId()+"";
-                    String tran_carout_registered_no = response.body().getData().getReceiptNo()+"";
+                    String tran_carout_registered_no = response.body().getData().getCabinetObj().getRegisteredNo()+"";
                     String tran_carout_building_tax = response.body().getData().getCabinetObj().getBuildingTax()+"";
                     String tran_carout_building_id = response.body().getData().getCabinetObj().getBuildingId()+"";
                     String tran_carout_building_code = response.body().getData().getCabinetObj().getBuildingCode()+"";

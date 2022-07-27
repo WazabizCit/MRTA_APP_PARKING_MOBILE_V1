@@ -114,9 +114,11 @@ public class HistoryCarInMainActivity extends ImportantMethod {
                         dialog.dismiss();
                     }
                 });
+
                 builder.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int id) {
+
                         // Do something
                         String card_code = ((History_data_carin_dao) adapter.getItem(position)).getTran_carin_cardcode();
                         String card_name = ((History_data_carin_dao) adapter.getItem(position)).getTran_carin_cardname();
@@ -129,9 +131,12 @@ public class HistoryCarInMainActivity extends ImportantMethod {
 
                         sendZplOverBluetooth(carin_guardhouse_in, license_plate, timestamp, card_code,card_name,carin_user_name,carin_cartype_name,name_building_name);
                         dialog.dismiss();
+
+
                     }
 
                 });
+
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
@@ -235,11 +240,7 @@ public class HistoryCarInMainActivity extends ImportantMethod {
     }
 
 
-
-
-
-    private void sendZplOverBluetooth(final String location_zpl, final String license_plate, final String time,
-                                      final String card_code,final String card_name,final String cashier,final String type_car,final String name_building_name) {
+    private void sendZplOverBluetooth(final String location_zpl, final String license_plate, final String time, final String card_code,final String card_name,final String cashier,final String type_car,final String name_building_name) {
 
         new Thread(new Runnable() {
             public void run() {
@@ -270,6 +271,7 @@ public class HistoryCarInMainActivity extends ImportantMethod {
                 }
             }
         }).start();
+
     }
 
 

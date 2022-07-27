@@ -36,6 +36,7 @@ public class MainActivity extends ImportantMethod implements NavigationView.OnNa
         toolbar.setTitle("Parking");
 
 
+
         drawer = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -60,6 +61,7 @@ public class MainActivity extends ImportantMethod implements NavigationView.OnNa
 
         btn_gate_in.setOnClickListener(this);
         btn_gate_out.setOnClickListener(this);
+
     }
 
 
