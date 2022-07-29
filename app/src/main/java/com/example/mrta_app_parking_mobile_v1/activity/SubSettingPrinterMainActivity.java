@@ -3,6 +3,7 @@ package com.example.mrta_app_parking_mobile_v1.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -15,6 +16,8 @@ import android.widget.RadioButton;
 
 import com.example.mrta_app_parking_mobile_v1.R;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
+import com.zebra.sdk.comm.BluetoothConnectionInsecure;
+import com.zebra.sdk.comm.Connection;
 
 
 public class SubSettingPrinterMainActivity extends ImportantMethod implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -51,6 +54,7 @@ public class SubSettingPrinterMainActivity extends ImportantMethod implements Vi
 
     EditText edit_ip_printer;
     CardView card_ok;
+    CardView card_test_print;
 
 
 
@@ -94,6 +98,7 @@ public class SubSettingPrinterMainActivity extends ImportantMethod implements Vi
 
         edit_ip_printer = findViewById(R.id.edit_ip_printer);
         card_ok = findViewById(R.id.card_ok);
+        card_test_print  = findViewById(R.id.card_test_print);
 
 
         radio_carout_print_all = findViewById(R.id.radio_carout_print_all);
@@ -111,6 +116,7 @@ public class SubSettingPrinterMainActivity extends ImportantMethod implements Vi
 
 
         card_ok.setOnClickListener(this);
+        card_test_print.setOnClickListener(this);
 
 
         radio_carout_print_all.setChecked(status_radio_carout_print_all);
@@ -173,6 +179,12 @@ public class SubSettingPrinterMainActivity extends ImportantMethod implements Vi
                 save_references();
                 showToastSuccess("บันทึกสำเร็จ",getApplicationContext());
             }
+
+
+        }else if(view == card_test_print){
+
+            loadPreferences();
+            sendZplOverBluetooth();
 
 
         }
@@ -253,6 +265,48 @@ public class SubSettingPrinterMainActivity extends ImportantMethod implements Vi
         status_radio_carout_print_price_only = settings.getBoolean(PREF_STATUS_RADIO_CAROUT_PRINT_PRICE_ONLY, DefaultBoolean);
 
 
+
+    }
+
+
+    private void sendZplOverBluetooth() {
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    // Instantiate connection for given Bluetooth&reg; MAC Address.
+                    Connection thePrinterConn = new BluetoothConnectionInsecure(name_mac_address_print);
+
+                    // Initialize
+                    Looper.prepare();
+
+                    // Open the connection - physical connection is established here.
+                    thePrinterConn.open();
+
+
+
+
+
+                    String zpl = getStringZplTEST();
+
+
+
+                    thePrinterConn.write(zpl.getBytes());
+
+
+                    // Make sure the data got to the printer before closing the connection
+                    Thread.sleep(500);
+
+                    // Close the connection to release resources.
+                    thePrinterConn.close();
+
+                    Looper.myLooper().quit();
+                } catch (Exception e) {
+                    // Handle communications error here.
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
     }
 

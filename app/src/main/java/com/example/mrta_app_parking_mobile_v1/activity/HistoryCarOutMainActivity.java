@@ -100,6 +100,7 @@ public class HistoryCarOutMainActivity extends ImportantMethod {
 
     }
     private void inintInstances() {
+
         txt_view_nodata = findViewById(R.id.txt_view_nodata);
         listview = findViewById(R.id.listview);
 
@@ -145,9 +146,8 @@ public class HistoryCarOutMainActivity extends ImportantMethod {
                         String carout_payment_type_name_th = ((History_data_carout_dao) adapter.getItem(position)).getTran_carout_payment_type_name_th();
 
                         String start_date    =  carout_carparking_in_time;
-
-                        // Given end Date
                         String end_date   =  carout_carparking_out_time;
+
 
 
                         findDifference(start_date,end_date);
@@ -160,8 +160,9 @@ public class HistoryCarOutMainActivity extends ImportantMethod {
                                 carout_license_plate,carout_cardcode,carout_carparking_in_time,name_building_tel,
                                 carout_payment_amount,carout_payment_fine_amount,carout_payment_totle,carout_payment_type_name_th
                                 ,carout_diff_time_in_out);
-                        dialog.dismiss();
 
+
+                        dialog.dismiss();
 
                     }
 
@@ -222,8 +223,6 @@ public class HistoryCarOutMainActivity extends ImportantMethod {
     protected void onResume() {
         super.onResume();
 
-
-
     }
 
     @Override
@@ -261,7 +260,8 @@ public class HistoryCarOutMainActivity extends ImportantMethod {
 
 
 
-    private void sendZplOverBluetooth(final String carout_building_tax,
+    private void sendZplOverBluetooth(
+                                      final String carout_building_tax,
                                       final String carout_registered_no,
                                       final String carout_cabinet_tax_code,
                                       final String carout_cabinet_code,
@@ -362,20 +362,15 @@ public class HistoryCarOutMainActivity extends ImportantMethod {
         // Try Block
         try {
 
-            // parse method is used to parse
-            // the text from a string to
-            // produce the date
+
             Date d1 = sdf.parse(start_date);
             Date d2 = sdf.parse(end_date);
 
-            // Calucalte time difference
-            // in milliseconds
+
             long difference_In_Time
                     = d2.getTime() - d1.getTime();
 
-            // Calucalte time difference in
-            // seconds, minutes, hours, years,
-            // and days
+
             long difference_In_Seconds
                     = (difference_In_Time
                     / 1000)

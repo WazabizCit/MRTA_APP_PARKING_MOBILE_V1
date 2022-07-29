@@ -12,9 +12,23 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.mrta_app_parking_mobile_v1.R;
+import com.example.mrta_app_parking_mobile_v1.manager.HttpManager;
+import com.example.mrta_app_parking_mobile_v1.model.Result_action_mobile_login;
 import com.example.mrta_app_parking_mobile_v1.util.ImportantMethod;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SubSettingIpaddressMainActivity extends ImportantMethod implements View.OnClickListener {
+
+
+
+    String TAG = "SubSettingIpaddressMainActivity";
+
 
     private static final String PREFS_NAME = "preferences";
     private static final String PREF_IP_ADDRESS = "pref_ip_address";
@@ -30,9 +44,11 @@ public class SubSettingIpaddressMainActivity extends ImportantMethod implements 
 
     ////////////////////////////////////////////////////////////////
 
+
     EditText edit_ip_server;
     EditText edit_port;
     CardView card_ok;
+    CardView card_test_conncet;
 
 
 
@@ -65,6 +81,7 @@ public class SubSettingIpaddressMainActivity extends ImportantMethod implements 
         edit_port = findViewById(R.id.edit_port);
 
         card_ok = findViewById(R.id.card_ok);
+        card_test_conncet = findViewById(R.id.card_test_conncet);
 
         if(ip_address.replaceAll(" ","").equals("null")){
             edit_ip_server.setText("192.168.1.1");
@@ -83,6 +100,7 @@ public class SubSettingIpaddressMainActivity extends ImportantMethod implements 
 
 
         card_ok.setOnClickListener(this);
+        card_test_conncet.setOnClickListener(this);
     }
 
 
@@ -144,6 +162,45 @@ public class SubSettingIpaddressMainActivity extends ImportantMethod implements 
                 showToastSuccess("บันทึกสำเร็จ",getApplicationContext());
 
             }
+
+
+
+        }else if(v == card_test_conncet){
+
+
+            loadPreferences();
+
+            Call<ResponseBody> call =
+                    HttpManager.getInstance(ip_address, port).getService().test_con();
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+
+                    try {
+
+                        String result = response.body().string();
+                        showToastSuccess( result+"",SubSettingIpaddressMainActivity.this);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        showToastDanger( "เชื่อมต่อไม่สำเร็จ",SubSettingIpaddressMainActivity.this);
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    showToastWarning("ผิดพลาด" + t.toString(), getApplicationContext());
+                    showToastLog(TAG, t.toString());
+
+
+                }
+            });
+
 
 
 
