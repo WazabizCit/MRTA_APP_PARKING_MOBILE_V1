@@ -249,19 +249,45 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                         data_payment_status = response.body().getData().getPaymentStatus() + "";
 
 
-                        edit_info.setText(
-                                "สถานะระบบ : " + data_uat_text + "\n" +
-                                        "ทะเบียนรถ : " + data_lic_plate + "\n" +
-                                        "ประเภทผู้ใช้ : " + data_card_status + "\n" +
-                                        "ประเภทบัตร : " + data_car_type_status + "\n" +
-                                        "เวลาเข้า : " + data_carparking_in_time + "\n" +
-                                        "เวลาออก : " + data_carparking_out_time + "\n" +
-                                        "เวลาจอดที่ปัดเศษ : " + data_result_parking_interval + "\n" +
-                                        "สถานะ Estamp : " + data_estamp_type_name + "\n" +
-                                        "ค่าปรับ : " + data_payment_fine_amount + " บาท\n" +
-                                        "ส่วนลด : " + data_discount_amount + " บาท\n" +
-                                        "ค่าบริการสุทธิ : " + data_payment_totle + " บาท\n "
-                        );
+                        if (data_payment_status.equals("PAY")) {
+
+
+                            edit_info.setText(
+                                    "สถานะระบบ : " + data_uat_text + "\n" +
+                                            "สถานะชำระเงิน : " + data_payment_status + "\n" +
+                                            "ทะเบียนรถ : " + data_lic_plate + "\n" +
+                                            "ประเภทผู้ใช้ : " + data_card_status + "\n" +
+                                            "ประเภทบัตร : " + data_car_type_status + "\n" +
+                                            "เวลาเข้า : " + data_carparking_in_time + "\n" +
+                                            "เวลาออก : " + data_carparking_out_time + "\n" +
+                                            "เวลาจอดที่ปัดเศษ : " + data_result_parking_interval + "\n" +
+                                            "สถานะ Estamp : " + data_estamp_type_name + "\n" +
+                                            "ค่าปรับ : " + 0 + " บาท\n" +
+                                            "ส่วนลด : " + 0 + " บาท\n" +
+                                            "ค่าบริการสุทธิ : " + 0 + " บาท\n "
+                            );
+
+
+                        } else {
+
+
+                            edit_info.setText(
+                                    "สถานะระบบ : " + data_uat_text + "\n" +
+                                            "สถานะชำระเงิน : " + data_payment_status + "\n" +
+                                            "ทะเบียนรถ : " + data_lic_plate + "\n" +
+                                            "ประเภทผู้ใช้ : " + data_card_status + "\n" +
+                                            "ประเภทบัตร : " + data_car_type_status + "\n" +
+                                            "เวลาเข้า : " + data_carparking_in_time + "\n" +
+                                            "เวลาออก : " + data_carparking_out_time + "\n" +
+                                            "เวลาจอดที่ปัดเศษ : " + data_result_parking_interval + "\n" +
+                                            "สถานะ Estamp : " + data_estamp_type_name + "\n" +
+                                            "ค่าปรับ : " + data_payment_fine_amount + " บาท\n" +
+                                            "ส่วนลด : " + data_discount_amount + " บาท\n" +
+                                            "ค่าบริการสุทธิ : " + data_payment_totle + " บาท\n "
+                            );
+
+
+                        }
 
 
                     } else {
@@ -372,7 +398,11 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                         break;
                     default:
 
-                        if (data_payment_totle.equals("0")) {
+
+                        showToastLog(TAG, data_payment_status + "");
+
+
+                        if (data_payment_status.equals("PAY")) {
 
                             showToastLog(TAG, "not pay");
                             fun_mobile_out_flag_card_no_pay();
@@ -384,6 +414,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
 
 
                         }
+
 
                 }
 
@@ -405,8 +436,8 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
 
         Call<Result_mobile_out_flag_card_no_pay> call = HttpManager.getInstance(ip_address, port).getService().action_mobile_out_flag_card_no_pay(
                 name_cabinet_id, name_cabinet_code, name_building_id, name_building_code, tag_id_card, timestamp, name_admin_id, "", "",
-                data_payment_type_id, data_payment_event_id, data_tci_id, data_payment_amount, data_discount_amount, data_payment_totle, "0", "0",
-                "0", "0", "0", "0", "0", "0", "0", data_payment_fine_amount
+                data_payment_type_id, data_payment_event_id, data_tci_id, "0", "0", "0", "0", "0",
+                "0", "0", "0", "0", "0", "0", "0", "0"
 
         );
         call.enqueue(new Callback<Result_mobile_out_flag_card_no_pay>() {
@@ -443,16 +474,22 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                     String tran_carout_car_type_name = response.body().getData().getResultReceiptData().getCarTypeName() + "";
                     String tran_carout_payment_type_name_th = response.body().getData().getResultReceiptData().getPaymentTypeNameTh() + "";
                     String tran_carout_estamp_status = response.body().getData().getResultReceiptData().getEstampStatus() + "";
-                    String tran_carout_payment_amount = response.body().getData().getResultReceiptData().getPaymentAmount() + "";
-                    String tran_carout_payment_discount_amount = response.body().getData().getResultReceiptData().getPaymentDiscountAmount() + "";
-                    String tran_carout_payment_fine_amount = response.body().getData().getResultReceiptData().getPaymentFineAmount() + "";
-                    String tran_carout_payment_totle = response.body().getData().getResultReceiptData().getPaymentTotle() + "";
                     String tran_carout_ref1 = response.body().getData().getResultReceiptData().getRef1() + "";
                     String tran_carout_ref2 = response.body().getData().getResultReceiptData().getRef2() + "";
                     String tran_carout_admin_id = name_admin_id + "";
                     String tran_carout_admin_name = name_admin_name + "";
                     String tran_carout_response = "ทำรายการสำเร็จ";
 
+//                    String tran_carout_payment_amount = response.body().getData().getResultReceiptData().getPaymentAmount() + "";
+//                    String tran_carout_payment_discount_amount = response.body().getData().getResultReceiptData().getPaymentDiscountAmount() + "";
+//                    String tran_carout_payment_fine_amount = response.body().getData().getResultReceiptData().getPaymentFineAmount() + "";
+//                    String tran_carout_payment_totle = response.body().getData().getResultReceiptData().getPaymentTotle() + "";
+
+
+                    String tran_carout_payment_amount = 0+ "";
+                    String tran_carout_payment_discount_amount = 0+"";
+                    String tran_carout_payment_fine_amount = 0 + "";
+                    String tran_carout_payment_totle = 0 + "";
 
                     String start_date = tran_carout_carparking_in_time;
                     String end_date = tran_carout_carparking_out_time;
@@ -674,7 +711,6 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
                         }
 
                     }
-
 
 
                     RecordHistoryCarOutData(
