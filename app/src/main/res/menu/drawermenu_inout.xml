@@ -7,9 +7,17 @@
 
 
         <item
+            android:id="@+id/item_detail_setting"
+            android:title="ข้อมูลเครื่อง"
+            android:icon="@drawable/ic_settings_black_24dp">
+
+        </item>
+
+
+        <item
             android:id="@+id/item_history_in"
             android:title="ประวัติขาเข้า"
-            android:icon="@drawable/ic_lock_48">
+            android:icon="@drawable/ic_history_48">
 
         </item>
 
@@ -17,7 +25,7 @@
         <item
             android:id="@+id/item_history_out"
             android:title="ประวัติขาออก"
-            android:icon="@drawable/ic_lock_48">
+            android:icon="@drawable/ic_history_48">
 
         </item>
 

@@ -4,12 +4,29 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.143" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_about_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_account_box_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_arrow_back_white_40dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_assignment_ind_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_baseline_account_circle_48.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_baseline_delete_48.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_camera_alt_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_chevron_right_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_delete_forever_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_edit_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_email_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_history_success_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_layers_clear_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/drawable/ic_local_phone_black_24dp.xml" value="0.153" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_detail_setting_device_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_history_car_in_main.xml" value="0.22135416666666666" />
-        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_history_car_out_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_history_car_out_main.xml" value="0.25" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_in_car_main.xml" value="0.25" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_login_main.xml" value="0.25" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_main_splash.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_main_test_read_card.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_out_car_main.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_setting_main.xml" value="0.25" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/activity_sub_setting_device_main.xml" value="0.25" />
@@ -18,6 +35,11 @@
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/list_data_history_carin.xml" value="0.25" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/list_data_history_carout.xml" value="0.25" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/nav_header.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/toast.xml" value="0.1796875" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/toast_error.xml" value="0.1796875" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/toast_info.xml" value="0.1796875" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/toast_success.xml" value="0.1796875" />
+        <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/layout/toast_warning.xml" value="0.1796875" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/menu/drawermenu_inout.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/menu/menu_main_clear.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/MzWazabi/AndroidStudioProjects/MRTA_APP_PARKING_MOBILE_V1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.143" />

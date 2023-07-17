@@ -19,35 +19,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".activity.DetailSettingDeviceMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainTestReadCardActivity"
+            android:exported="false"></activity>
         <activity
             android:name=".activity.SubSettingPrinterMainActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.HistoryCarOutMainActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.HistoryCarInMainActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.SubSettingDeviceMainActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.SubSettingIpaddressMainActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.SettingMainActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.LoginMainActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.MainSplashActivity"
             android:exported="true"
@@ -60,11 +58,9 @@
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.OutCarMainActivity"
             android:exported="true" />
-
         <activity
             android:name=".activity.InCarMainActivity"
             android:exported="true" />

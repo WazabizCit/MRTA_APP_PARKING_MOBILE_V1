@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.nfc.NfcAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginMainActivity extends ImportantMethod implements View.OnTouchListener, View.OnClickListener {
+public class LoginMainActivity extends ImportantMethod implements View.OnClickListener {
 
 
     String TAG = "LoginMainActivity";
@@ -71,6 +72,8 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         loadPreferences();
         inintInstances();
     }
@@ -85,7 +88,7 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
         btn_admin_setting = findViewById(R.id.btn_admin_setting);
 
 
-        relativeLayout_login.setOnTouchListener(this);
+       // relativeLayout_login.setOnTouchListener(this);
 
         btn_login.setOnClickListener(this);
         btn_admin_setting.setOnClickListener(this);
@@ -102,13 +105,13 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
     }
 
 
-
+/*
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
@@ -191,8 +194,6 @@ public class LoginMainActivity extends ImportantMethod implements View.OnTouchLi
 
                 }
             }
-
-
 
         }
 

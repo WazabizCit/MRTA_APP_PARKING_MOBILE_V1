@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Looper;
@@ -125,6 +126,7 @@ public class OutCarMainActivity extends ImportantMethod implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_out_car_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);

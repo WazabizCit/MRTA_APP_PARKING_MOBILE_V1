@@ -5,9 +5,14 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mrta_app_parking_mobile_v1.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,15 +26,19 @@ public class ImportantMethod extends AppCompatActivity {
 
     public void showToastWarning(String text, Context context) {
 
-        int bg_color = Color.parseColor("#ffc000");
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_warning,
+                (ViewGroup) findViewById(R.id.toast_warning_layout_root));
 
-        Toast tost  = Toast.makeText(context,text,Toast.LENGTH_LONG);
-        View view  = tost.getView();
-        view.getBackground().setColorFilter(bg_color, PorterDuff.Mode.SRC_IN);
-        TextView textx = view.findViewById(android.R.id.message);
-        textx.setTextSize(20);
-        textx.setTextColor(Color.BLACK);
-        tost.show();
+
+        TextView textx = (TextView) layout.findViewById(R.id.text);
+        textx.setText(text);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
 
 
 
@@ -40,16 +49,20 @@ public class ImportantMethod extends AppCompatActivity {
     public void showToastSuccess(String text, Context context) {
 
 
-        int bg_color = Color.parseColor("#28a953");
 
-        Toast tost  = Toast.makeText(context,text,Toast.LENGTH_LONG);
-        View view  = tost.getView();
-        view.getBackground().setColorFilter(bg_color, PorterDuff.Mode.SRC_IN);
-        TextView textx = view.findViewById(android.R.id.message);
-        textx.setTextSize(20);
-        textx.setTextColor(Color.WHITE);
-        tost.show();
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_success,
+                (ViewGroup) findViewById(R.id.toast_success_layout_root));
 
+
+        TextView textx = (TextView) layout.findViewById(R.id.text);
+        textx.setText(text);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
 
 
 
@@ -60,16 +73,19 @@ public class ImportantMethod extends AppCompatActivity {
     public void showToastDanger(String text, Context context) {
 
 
-        int bg_color = Color.parseColor("#e60000");
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_error,
+                (ViewGroup) findViewById(R.id.toast_error_layout_root));
 
-        Toast tost  = Toast.makeText(context,text,Toast.LENGTH_LONG);
-        View view  = tost.getView();
-        view.getBackground().setColorFilter(bg_color, PorterDuff.Mode.SRC_IN);
-        TextView textx = view.findViewById(android.R.id.message);
-        textx.setTextSize(20);
-        textx.setTextColor(Color.WHITE);
-        tost.show();
 
+        TextView textx = (TextView) layout.findViewById(R.id.text);
+        textx.setText(text);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
 
 
 
@@ -91,6 +107,31 @@ public class ImportantMethod extends AppCompatActivity {
             return null;
         }
     }
+
+
+    public void showToastInfo(String text) {
+
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_info,
+                (ViewGroup) findViewById(R.id.toast_info_layout_root));
+
+
+        TextView textx = (TextView) layout.findViewById(R.id.text);
+        textx.setText(text);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+
+
+
+
+
+    }
+
 
 
     public static String getCurrentDate() {

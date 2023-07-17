@@ -1,6 +1,7 @@
 package com.example.mrta_app_parking_mobile_v1.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,6 +30,7 @@ public class MainActivity extends ImportantMethod implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -96,6 +98,12 @@ public class MainActivity extends ImportantMethod implements NavigationView.OnNa
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+
+            case R.id.item_detail_setting:
+                startActivity(new Intent(MainActivity.this, DetailSettingDeviceMainActivity.class));
+                finish();
+                break;
+
 
             case R.id.item_history_in:
                 startActivity(new Intent(MainActivity.this, HistoryCarInMainActivity.class));

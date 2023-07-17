@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Looper;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -102,6 +104,7 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_car_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -129,6 +132,8 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
             showToastWarning("nfc not support your device", this);
             return;
         }
+
+
         mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
         //////////////////////////  NFC //////////////////////////
@@ -183,6 +188,8 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
 
         final String timestamp = getCurrentTimeStamp();
 
+        String action = intent.getAction();
+        showToastLog(TAG, "action: " + action);
         try {
 
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -239,11 +246,14 @@ public class InCarMainActivity extends ImportantMethod implements View.OnClickLi
 
         } catch (Exception e) {
 
+
+
             showToastSuccess("RFID ไม่ตรงกัน", InCarMainActivity.this);
             tag_id_card = null;
             edit_id_card.setText("เลข Card");
             edit_type_card.setText("ประเภทบัตร");
             showToastLog(TAG, "Error: " + e);
+            progressDoalog.dismiss();
 
         }
 
