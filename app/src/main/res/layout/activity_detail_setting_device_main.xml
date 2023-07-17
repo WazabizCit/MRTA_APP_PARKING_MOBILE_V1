@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".activity.DetailSettingDeviceMainActivity">
+
+
+
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorToolbar"
+    android:elevation="4dp"
+    app:popupTheme="@style/Theme.AppCompat.Light"
+    app:theme="@style/ToolbarColoredBackArrow">
+
+</android.support.v7.widget.Toolbar>
+
+
+
+
+<android.support.design.widget.TextInputLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+
+    >
+
+    <EditText
+        android:id="@+id/edit_cabinet_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="cabinet_id"
+        android:enabled="false"
+        android:inputType="text"
+        android:textSize="15sp" />
+
+</android.support.design.widget.TextInputLayout>
+
+
+
+<android.support.design.widget.TextInputLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+
+    >
+
+    <EditText
+        android:id="@+id/edit_cabinet_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="cabinet_code"
+        android:enabled="false"
+        android:inputType="text"
+        android:textSize="15sp" />
+</android.support.design.widget.TextInputLayout>
+
+
+
+<android.support.design.widget.TextInputLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+
+    >
+
+    <EditText
+        android:id="@+id/edit_building_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="building_id"
+        android:inputType="text"
+        android:enabled="false"
+        android:textSize="15sp" />
+</android.support.design.widget.TextInputLayout>
+
+
+
+
+<android.support.design.widget.TextInputLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+
+    >
+
+    <EditText
+        android:id="@+id/edit_building_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="building_code"
+        android:enabled="false"
+        android:inputType="text"
+        android:textSize="15sp" />
+</android.support.design.widget.TextInputLayout>
+
+
+
+<android.support.design.widget.TextInputLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+
+    >
+
+    <EditText
+        android:id="@+id/edit_building_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ชื่อสถานี"
+        android:enabled="false"
+        android:inputType="text"
+        android:textSize="15sp" />
+</android.support.design.widget.TextInputLayout>
+
+
+<android.support.design.widget.TextInputLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+
+    >
+
+    <EditText
+        android:id="@+id/edit_building_tel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="เบอร์โทรสถานี"
+        android:enabled="false"
+        android:inputType="text"
+        android:textSize="15sp" />
+</android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="40dp"
+
+        >
+
+        <EditText
+            android:id="@+id/edit_ip_server"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="IP Server"
+            android:enabled="false"
+            android:inputType="text"
+            android:textSize="15sp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="40dp"
+
+        >
+
+        <EditText
+            android:id="@+id/edit_port"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PORT"
+            android:enabled="false"
+            android:inputType="text"
+            android:textSize="15sp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

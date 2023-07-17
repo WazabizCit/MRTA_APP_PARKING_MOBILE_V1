@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+
+    <item android:id="@+id/action_setting_device"
+        android:title="ตั้งค่า Device"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_ip_address"
+        android:title="ตั้งค่า IP"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_ip_print"
+        android:title="ตั้งค่าเครื่องปริ้น"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_test_card"
+        android:title="ทดสอบอ่าน Card"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+
+
+</menu>
